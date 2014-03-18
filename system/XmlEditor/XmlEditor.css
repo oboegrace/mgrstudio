@@ -1,0 +1,80 @@
+.XmlEditor {
+
+}
+.XmlEditor h4 {
+	margin: 0px 0;
+	padding: 10px 25px;
+	color: #009966;
+	border-bottom: 1px solid #009966;
+	background-color: #fff;
+}
+.XmlEditor table {
+	width: 100%;
+	margin-bottom: 20px;
+}
+.XmlEditor th {
+	text-align: right;
+	width: 150px;
+	padding: 10px 10px 10px 10px;
+	color: #009966;
+	vertical-align: top;
+	border-bottom: 1px solid #ccc;
+}
+.XmlEditor td {
+	padding: 10px;
+	font-size: 11pt;
+	line-height: 150%;
+	border-bottom: 1px solid #ccc;
+}
+.XmlEditor input {
+	padding: 5px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+.XmlEditor textarea {
+	resize: vertical;
+}
+.XmlEditor .columnNote {
+	margin-top: 5px;
+	font-size: 10pt;
+	color: #cc9900;
+}
+.XmlEditor .editBtn {
+	margin-left: 5px; 
+	color: #aaa;
+	cursor: pointer;
+}
+.XmlEditor .editBtn:hover {
+	color: green;
+}
+/* inputPanel */
+#XmlEditor_inputPanel {
+	display: none;
+}
+#XmlEditor_inputBox {
+	width: 100%;
+	margin: 0;
+	padding: 5px;
+	border: 3px solid #009966;
+}
+
+/* funcPanel */
+#funcPanel {
+	padding: 0;
+	margin: 0;
+	color: #fff;
+	background-color: #444;
+}
+#statusPanel {
+	color: #fff;
+	background-color: #444;
+	padding: 8px 10px;
+}
+.XmlEditor_button {
+	display: inline-block;
+	padding: 8px 10px;
+	cursor: pointer;
+}
+.XmlEditor_button:hover {
+	background-color: #666;
+}

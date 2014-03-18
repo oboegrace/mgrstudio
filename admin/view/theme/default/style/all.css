@@ -1,0 +1,112 @@
+body {
+	padding: 0;
+	margin: 0;
+}
+.contentArea {
+	position: relative;
+	width: 950px;
+	margin: 0 auto;
+}
+/* ===================================================== */
+/* 						HEADER							 */
+/* ===================================================== */
+#header {
+
+}
+#websiteBtn {
+	position: absolute;
+	top: 10px;
+	right: 0;
+}
+#websiteBtn a {
+	display: block;
+	text-decoration: none;
+	color: #009966;
+	background-color: #fff;
+	padding: 5px 15px;
+	border-radius: 5px;
+	border: 1px solid #009966;
+	font-size: 10pt;
+}
+#websiteBtn a:hover {
+	color: #fff;
+	background-color: #009966;
+}
+/* ===================================================== */
+/* 						CONTENT							 */
+/* ===================================================== */
+#content {
+	min-height: 300px;
+}
+/* ===================================================== */
+/* 						FOOTER							 */
+/* ===================================================== */
+#footer {
+	border-top: 1px solid #ccc;
+	text-align: center;
+	padding: 10px 0;
+	font-family: Arial;
+	font-size: 0.7em;
+}
+/* ===================================================== */
+/* 						MENU							 */
+/* ===================================================== */
+#menu {
+	background-color: #444;
+}
+#menu ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	font-size: 0;
+}
+#menu li {
+	display: inline-block;
+}
+#menu li a {
+	display: block;
+	color: #fff;
+	text-decoration: none;
+	padding: 10px 30px;
+	font-size: 12pt;
+	text-transform: uppercase;
+}
+#menu li a:hover {
+	background-color: #009966;
+}
+#menu .current {
+	color: #00cc99;
+}
+#menu .current:hover {
+	background-color: #444;
+}
+/* ===================================================== */
+/* 						SUBMENU							 */
+/* ===================================================== */
+#subMenu {
+	background-color: #ccc;
+}
+#subMenu ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	font-size: 0;
+}
+#subMenu li {
+	display: inline-block;
+}
+#subMenu li a {
+	display: block;
+	color: #444;
+	text-decoration: none;
+	padding: 10px 20px;
+	font-size: 12pt;
+	text-transform: uppercase;
+}
+#subMenu li a:hover {
+	color: #009966;
+}
+#subMenu .current {
+	color: #009966;
+	background-color: #e0e0e0;
+}

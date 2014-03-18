@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doc>
+	<welcome_title>Welcome To the Blue!</welcome_title>
+	<welcome_content>Welcome to Blue Framework. This is a well designed web framework following MVC design pattern. Page data store in model, view get the data from model and render the page, controller receive user controls and make model to change.</welcome_content>
+</doc>
