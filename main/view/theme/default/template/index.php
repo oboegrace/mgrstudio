@@ -8,7 +8,6 @@
 				<h4 id="highlighTitle">Highlight Works</h4>
 			</div>
 			<div class="one-third column">
-				
 				<h4>title</h4>
 				<p>content</p>
 			</div>

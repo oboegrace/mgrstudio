@@ -47,3 +47,12 @@
 #logo{
 	text-align: center;
 }
+
+#footer{
+	background-color: #1E2222;
+	padding: 50px 0 80px;
+	color: #CCC;
+}
+.contentArea{
+	width:90%;
+}

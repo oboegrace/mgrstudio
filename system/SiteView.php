@@ -1,7 +1,7 @@
 <?php
 include_once( 'system/View.php' );
 include_once( 'system/HtmlWrapper.php' );
-
+// echo "siteView.php loadded";
 abstract class SiteView extends View {
 
 	protected $theme = 'default';

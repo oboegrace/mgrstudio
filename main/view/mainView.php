@@ -2,11 +2,12 @@
 
 include_once( 'system/SiteView.php' );
 
+
 class mainView extends SiteView {
 
 	// Display
 	public function display() {
-
+		echo "mainView loadded";
 		// Vars
 		$templateFolder = $this->getTemplateFolder();
 		$styleFolder 	= $this->getStyleFolder();
