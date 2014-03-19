@@ -1,4 +1,4 @@
-w<?php 
+<?php 
 
 include_once( 'main/view/mainView.php' );
 

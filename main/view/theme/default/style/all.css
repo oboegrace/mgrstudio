@@ -52,7 +52,17 @@
 	background-color: #1E2222;
 	padding: 50px 0 80px;
 	color: #CCC;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1em;
 }
-.contentArea{
-	width:90%;
+
+a:link{
+	color:#ccc;
+	text-decoration: none;
+}
+a:link:hover{
+	text-decoration: underline;
+}
+a:visited{
+	color:#ccc;
 }
