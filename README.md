@@ -1,4 +1,4 @@
-mgrstuidio
+mgrstudio
 ==========
 
 MGR Studio - Website
