@@ -16,11 +16,8 @@ class mainModel extends SiteModel {
 		// Data
 		$this->contentData = $this->getXmlContentData( 'all' );
 	}
-<<<<<<< HEAD
+
 	public function getContentData(){
-=======
-	public function getContentData() {
->>>>>>> FETCH_HEAD
 		return $this->contentData;
 	}
 }

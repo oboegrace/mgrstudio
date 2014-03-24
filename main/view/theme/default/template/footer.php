@@ -20,16 +20,9 @@
 			<div id="footer-logo">
 				<img src="main/view/theme/default/images/footer_logo.png" id="footerlogoImg" />
 			</div>
-<<<<<<< HEAD
-			<div id="footer-rights"><?=str_replace('.', '.<br>', $c->copyright);?>
-			</div>
-		</div>
-		
-=======
 			<div id="footer-rights">
 				<?=str_replace('.', '.<br/>', $c->copyright);?>
 			</div>
 		</div>
->>>>>>> FETCH_HEAD
 	</div>
 </div>
