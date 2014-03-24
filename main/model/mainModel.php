@@ -4,7 +4,7 @@ include_once( 'system/SiteModel.php' );
 
 class mainModel extends SiteModel {
 
-	private $All;
+	private $contentData;
 
 	function __construct() {
 		parent::__construct();
@@ -14,7 +14,14 @@ class mainModel extends SiteModel {
 		$this->baseHref = '';
 		
 		// Data
-		$this->xmlAll = $this->getXmlContentData( 'all' );
+		$this->contentData = $this->getXmlContentData( 'all' );
+	}
+<<<<<<< HEAD
+	public function getContentData(){
+=======
+	public function getContentData() {
+>>>>>>> FETCH_HEAD
+		return $this->contentData;
 	}
 }
 

@@ -23,6 +23,7 @@ session_start();
 // take the 2nd element as sitename (1st = product folder)
 if ( $host == 'localhost') {
     array_shift( $pathElements );
+    array_shift( $pathElements ); //git
 }
 
 // Check Site & Page from PathElements
@@ -54,9 +55,9 @@ $file_m = $siteName.'/model/'.$name_m.'.php';
 $file_v = $siteName.'/view/'.$name_v.'.php';
 $file_c = $siteName.'/controller/'.$name_c.'.php';
 
-// echo '<div>'.$file_m.'</div>';
-// echo '<div>'.$file_v.'</div>';
-// echo '<div>'.$file_c.'</div>';
+ // echo '<div>'.$file_m.'</div>';
+ // echo '<div>'.$file_v.'</div>';
+ // echo '<div>'.$file_c.'</div>';
 
 // Include MVC Files
 if ( is_file($file_m) && is_file($file_v) && is_file($file_c) ) {

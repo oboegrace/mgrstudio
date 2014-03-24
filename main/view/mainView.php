@@ -12,7 +12,7 @@ class mainView extends SiteView {
 		$styleFolder 	= $this->getStyleFolder();
 
 		// Content (XML)
-		$c = $this->model->getXmlContentData( 'all' );
+		$c = $this->model->getContentData();
 
 		// Get Data from Model
 		$pageName = $this->model->getPageName();
@@ -26,6 +26,7 @@ class mainView extends SiteView {
 		$wrapper->addCss( SETTING_BASEHREF.'system/css/skeleton.css' );
 		$wrapper->addCss( SETTING_BASEHREF.'system/css/layout.css' );
 		$wrapper->addCss( $styleFolder.'all.css' );
+		$wrapper->addCss( $styleFolder.$pageName.'.css' );
 
 		// Ini Content ( set styles & js by wrapper )
 		$this->iniPage( $wrapper );

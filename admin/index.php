@@ -1,5 +1,5 @@
 <?php
 
-header( "location: index" );
+header( "location: index/" );
 
 ?>
