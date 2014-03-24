@@ -7,10 +7,15 @@ class newsView extends adminView {
 	public function displayContent() {
 		
 		// Get Data from Model
-		$themplateFolder = $this->getTemplateFolder();
+		$templateFolder = $this->getTemplateFolder();
+		$newsList = $this->model->getNewsList();
+
+		// [0]['title']
+		// [1]['title']
+
 
 		// DisplayContent
-		require( $themplateFolder.'news.php' );
+		require( $templateFolder.'news.php' );
 	}
 }
 ?>
