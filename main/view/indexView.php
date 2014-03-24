@@ -4,8 +4,8 @@ include_once( 'main/view/mainView.php' );
 
 class indexView extends mainView {
 	public function iniPage( &$wrapper ) {
-		$styleFolder = $this->getStyleFolder();
-		$wrapper->addCss($styleFolder.'index.css');
+		// $styleFolder = $this->getStyleFolder();
+		// $wrapper->addCss($styleFolder.'index.css');
 	}
 	public function displayContent() {
 

@@ -10,19 +10,19 @@
 		</div>
 		<div class="four columns">
 			<i class="fa fa-envelope-o"></i>
-			<a class="link-mailto" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;tf=1&amp;to=service@mgrstudio.net" target="_blank"> service@mgrstudio.net</a>
+			<a class="link-mailto" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;tf=1&amp;to=service@mgrstudio.net" target="_blank"> <?=$c->email;?></a>
 		</div>
 		<div class="five columns">
-			<i class="fa fa-map-marker"></i> 106台北市大安區復興南路一段279巷32號
+			<i class="fa fa-map-marker"></i> <?=$c->address;?>
 		</div>
 
 		<div class="sixteen columns">
 			<div id="footer-logo">
-				<img src="main/view/theme/default/images/mgrLogo-small-white.gif" id="footerlogoImg" />
+				<img src="main/view/theme/default/images/footer_logo.png" id="footerlogoImg" />
 			</div>
-			<div id="footer-rights">2011 MARRY GO ROUND MEDIA INC.<br>ALL RIGHTS RESERVED
+			<div id="footer-rights">
+				<?=str_replace('.', '.<br/>', $c->copyright);?>
 			</div>
 		</div>
-		<?=$c->footer_content;?>
 	</div>
 </div>
