@@ -8,11 +8,7 @@ class newsView extends adminView {
 		
 		// Get Data from Model
 		$templateFolder = $this->getTemplateFolder();
-		$newsList = $this->model->getNewsList();
-
-		// [0]['title']
-		// [1]['title']
-
+		$newsList = $this->model->getNewsList();//在newsModel implement
 
 		// DisplayContent
 		require( $templateFolder.'news.php' );
