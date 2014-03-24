@@ -23,7 +23,6 @@ session_start();
 // take the 2nd element as sitename (1st = product folder)
 if ( $host == 'localhost') {
     array_shift( $pathElements );
-    array_shift( $pathElements ); //git
 }
 
 // Check Site & Page from PathElements

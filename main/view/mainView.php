@@ -10,7 +10,7 @@ class mainView extends SiteView {
 		// Vars
 		$templateFolder = $this->getTemplateFolder();
 		$styleFolder 	= $this->getStyleFolder();
-
+		$imageFolder 	= $this->getImageFolder();
 		// Content (XML)
 		$c = $this->model->getContentData();
 
