@@ -3,26 +3,33 @@
 		<!-- contact info -->
 		<!-- <div class="sixteen columns"> -->
 		<div class="three columns">
-			<i class="fa fa-phone"></i> 886 (2) 2325-8665
+			<i class="fa fa-phone"></i> <?=$c->tel;?>
 		</div>
 		<div class="three columns">
-			<i class="fa fa-print"></i> 886 (2) 2325-8655
+			<i class="fa fa-print"></i> <?=$c->fax;?>
 		</div>
 		<div class="four columns">
 			<i class="fa fa-envelope-o"></i>
-			<a class="link-mailto" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;tf=1&amp;to=service@mgrstudio.net" target="_blank"> service@mgrstudio.net</a>
+			<a class="link-mailto" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;tf=1&amp;to=service@mgrstudio.net" target="_blank"> <?=$c->email;?></a>
 		</div>
 		<div class="five columns">
-			<i class="fa fa-map-marker"></i> 106台北市大安區復興南路一段279巷32號
+			<i class="fa fa-map-marker"></i> <?=$c->address;?>
 		</div>
 
 		<div class="sixteen columns">
 			<div id="footer-logo">
-				<img src="main/view/theme/default/images/mgrLogo-small-white.gif" id="footerlogoImg" />
+				<img src="main/view/theme/default/images/footer_logo.png" id="footerlogoImg" />
 			</div>
-			<div id="footer-rights">2011 MARRY GO ROUND MEDIA INC.<br>ALL RIGHTS RESERVED
+<<<<<<< HEAD
+			<div id="footer-rights"><?=str_replace('.', '.<br>', $c->copyright);?>
 			</div>
 		</div>
-		<?=$c->footer_content;?>
+		
+=======
+			<div id="footer-rights">
+				<?=str_replace('.', '.<br/>', $c->copyright);?>
+			</div>
+		</div>
+>>>>>>> FETCH_HEAD
 	</div>
 </div>
