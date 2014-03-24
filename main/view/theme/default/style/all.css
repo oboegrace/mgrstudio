@@ -66,3 +66,27 @@ a:link:hover{
 a:visited{
 	color:#ccc;
 }
+#footer-logo{
+	margin: 20px auto;
+	text-align: center;
+}
+#footer-rights{
+	text-align: center;
+	margin: 20px auto 40px auto;
+}
+#footer{
+
+	position: fixed;
+	height: 100px;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	z-index: -1;
+}
+.space-for-footer{
+	width:100%;
+	display: block;
+	height:200px;
+	z-index:1;
+	background-color: rgba(0,0,0,0.3);
+}
