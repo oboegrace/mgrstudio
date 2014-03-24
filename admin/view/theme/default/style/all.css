@@ -38,6 +38,50 @@ body {
 #content {
 	min-height: 300px;
 }
+#content_header {
+	position: relative;
+	background-color: #007f55;
+	color: #fff;
+	font-size: 0;
+	font-family: Arial;
+}
+#content_header h2 {
+	display: inline-block;
+	text-align: left;
+	font-size: 13pt;
+	margin: 0 1px 0 0;
+	padding: 10px 30px;
+	background-color: #009966;
+	border: 0;
+	vertical-align: top;
+}
+.content_header_menu {
+	display: inline-block;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	font-size: 0;
+	vertical-align: top;
+}
+.content_header_menu li {
+	display: inline-block;
+}
+.content_header_menu a {
+	display: block;
+	color: #fff;
+	padding: 12px 15px;
+	font-size: 11pt;
+	text-decoration: none;
+	cursor: pointer;
+}
+.content_header_menu a:hover {
+	background-color: #009966;
+}
+.content_header_menu .current {
+	background-position: bottom center;
+	background-repeat: no-repeat;
+	background-image: url('../images/content_header_menu_current.png');
+}
 /* ===================================================== */
 /* 						FOOTER							 */
 /* ===================================================== */

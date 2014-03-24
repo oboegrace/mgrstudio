@@ -18,7 +18,7 @@
 
 		<div class="sixteen columns">
 			<div id="footer-logo">
-				<img src="main/view/theme/default/images/footer_logo.png" id="footerlogoImg" />
+				<img src="<?=$imageFolder;?>footer_logo.png" id="footerlogoImg" />
 			</div>
 			<div id="footer-rights">
 				<?=str_replace('.', '.<br/>', $c->copyright);?>
