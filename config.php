@@ -7,7 +7,7 @@ define('DIR_ROOT', '/mgrstudio'); // for absolut path ex: DIR_ROOT.'/images' = /
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASS', '1234');
-define('DB_NAME', 'ecojet');
+define('DB_NAME', 'mgrstudio');
 
 define('SITE_NAME', 'mgrstudio');
 define('SITE_URL', 'http://localhost/mgrstudio/');

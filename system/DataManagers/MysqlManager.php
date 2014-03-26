@@ -2,6 +2,7 @@
 
 require_once( 'system/DataManager.php' );
 
+//implement dataManager for MySQL
 class MysqlManager extends DataManager {
 	
 	private $dbhost  = '';

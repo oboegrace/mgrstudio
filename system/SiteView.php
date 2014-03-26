@@ -30,6 +30,11 @@ abstract class SiteView extends View {
 		$folder = $siteName.'/view/theme/'.$this->theme.'/images/';
 		return $folder;
 	}
+	public function getJsFolder(){
+		$siteName = $this->model->getSiteName();
+		$folder = $siteName.'/view/theme/'.$this->theme.'/js/';
+		return $folder;
+	}
 	public function getThemeFolder() {
 		$siteName = $this->model->getSiteName();
 		$folder = $siteName.'/view/theme/'.$this->theme.'/';
