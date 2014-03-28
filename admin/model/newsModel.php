@@ -27,6 +27,7 @@ class newsModel extends adminModel {
 		// var_dump($dataList);
 		return $dataList;
 	}
+	
 	public function deleteNews(){
 	/*
 	$dataMag->deleteData( array(
