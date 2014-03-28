@@ -79,9 +79,9 @@ if ( is_file($file_m) && is_file($file_v) && is_file($file_c) ) {
 
         // Action (GET & POST)
         if ( isset($_GET['action']) && !empty($_GET['action']) ) 
-            $controller->{'action_'.$_GET['action']}(); 
+            $controller->{'action_'.$_GET['action']}();
         if ( isset($_POST['action']) && !empty($_POST['action']) ) 
-            $controller->{'action_'.$_POST['action']}(); 
+            $controller->{'action_'.$_POST['action']}();
 
         // Ajax
         if ( isset($_POST['ajax']) && !empty($_POST['ajax']) ) {

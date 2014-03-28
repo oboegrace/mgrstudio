@@ -27,7 +27,7 @@
 					<td><?=$worksList[$i]['title']?></td>
 					<td><?=$worksList[$i]['title_cn']?></td>
 					<td><a href="admin/workEdit/?id=<?=$workEdit[$i]['id']?>"><i class="fa fa-pencil"/></a></td>
-					<td><a href="#" ><i class="fa fa-trash-o"></a></td>
+					<td><a onclick="deleteWork(<?=$worksList[$i]['id']?>);" ><i class="fa fa-trash-o"></a></td>
 				</tr>
 				<!-- 呼叫works.js 的deleteWorks() 產生表單＆送出 -->
 				<?php endfor;?>
