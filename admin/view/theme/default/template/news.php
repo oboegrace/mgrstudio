@@ -11,13 +11,13 @@
 <div id="content">
 	<div class="contentArea">
 		<form>
-		<table cellspacing="0" cellpadding="0">	
+		<table class="table table-hover" cellspacing="0" cellpadding="0">	
 		<tr>
 			<th></th>
 			<th>Title</th>
 			<th>Date</th>	
-			<th></th>
-			<th></th>
+			<th>編輯</th>
+			<th>刪除</th>
 		</tr>
 		<!-- php for-loop -->
 		<?php for ($i = 0 ; $i < count($newsList) ; $i++): ?>

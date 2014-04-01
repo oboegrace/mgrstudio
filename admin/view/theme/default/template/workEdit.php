@@ -9,46 +9,65 @@
 </div>
 <div id="content">
 	<div class="contentArea">
-		<form action="" method="post" onsubmit="return validateForm()" name="workEditForm">
-			<table cellspacing="0" cellpadding="0">	
-				<tr>
-					<th>Title</th>
-					<td><input type="text" value="<?php if($workData) echo $workData['title'];?>" name="title"></td>
-				</tr>
-				<tr>
-					<th>標題</th>
-					<td><input type="text" value="<?php if($workData) echo $workData['title_cn'];?>" name="title_cn"></td>
-				</tr>
-				<tr>
-					<th>Description描述</th>
-					<td><textarea name="description"><?php if($workData) echo $workData['description'];?></textarea></td>
-				</tr>
-				<tr>
-					<th><i class="fa fa-vimeo-square"/>Vimeo</th>
-					<td><input type="text" value="<?php if($workData) echo $workData['vimeo_id'];?>" name="vimeo_id"></td>
-				</tr>
-				<tr>
-					<th><i class="fa fa-youtube"/>YouTube</th>
-					<td><input type="text" value="<?php if($workData) echo $workData['youtube_id'];?>" name="youtube_id"></td>
-				</tr>
-				<tr>
-					<th>Image</th>
-					<td><input type="text" value="<?php if($workData) echo $workData['img'];?>" name="img"></td>
-				</tr>
-				<tr>
-					<th><i class="fa fa-calendar"/>Date</th>
-					<td><?php if($workData) echo $workData['date'];?></td>
-				</tr>
-			</table>
+		<br>
+		<form class="form-horizontal" role="form" action="" method="post" onsubmit="return validateForm()" name="workEditForm">
+			<div clas="form-group">
+				<label for="englishTitle" class="col-sm-2 control-label">English Title</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="englishTitle" value="<?php if($workData) echo $workData['title'];?>">
+				</div>
+			</div>
+			<div clas="form-group">
+				<label for="cnTitle" class="col-sm-2 control-label">標題</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="cnTitle" value="<?php if($workData) echo $workData['title_cn'];?>" name="title_cn">
+				</div>
+			</div>
+			<div clas="form-group">
+				<label for="description" class="col-sm-2 control-label">Description描述</label>
+				<div class="col-sm-10">
+				<textarea class="form-control" rows="3"><?php if($workData) echo $workData['description'];?></textarea>
+				</div>
+			</div>
+			<div clas="form-group">
+				<label for="vimeoID" class="col-sm-2 control-label">Viemo ID <i class="fa fa-vimeo-square"></i></label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="vimeoID" value="<?php if($workData) echo $workData['vimeo_id'];?>" name="vimeo_id">
+				</div>
+			</div>
+			<div clas="form-group">
+				<label for="fbID" class="col-sm-2 control-label">YouTube ID <i class="fa fa-youtube"></i></label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="fbID" value="<?php if($workData) echo $workData['youtube_id'];?>" name="youtube_id">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="imageFile" class="col-sm-2 control-label">File input</label>
+				<div class="col-sm-10">
+					<input type="file" id="imageFile">
+				</div>
+			</div>
+			<!-- <div class="form-group">
+				<label for="date">Date</label>
+				<p class="help-block"><?php if($workData) echo $workData['date'];?></p>
+			</div> -->
 			<?php if($workData):?>
 				<input type="hidden" name="id" value="<?=$workData['id']?>"/>
 				<input type="hidden" name="action" value="saveData"/>
 			<?php else: ?>
 				<input type="hidden" name="action" value="addData"/>
 			<?php endif;?>
-			<input type="button" value="Cancel" onclick="cancel()"/>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<p>
+						<button type="submit" value="SAVE" class="btn btn-primary">Save</button>
+						<button type="button" value="Cancel" class="btn btn-default" onclick="cancel()">Cancel</button>
+					</p>
+				</div>
+			</div>
+<!-- 			<input type="button" value="Cancel" onclick="cancel()"/>
 			<input type="submit" value="SAVE"/>
-		</form>
+ -->		</form>
 	</div>
 </div>
 <!-- javaScript -->

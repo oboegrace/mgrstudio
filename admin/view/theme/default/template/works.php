@@ -11,7 +11,7 @@
 <div id="content">
 	<div class="contentArea">
 		<form>
-			<table cellspacing="0" cellpadding="0">	
+			<table class="table table-hover" cellspacing="0" cellpadding="0">	
 				<tr>
 					<th></th>
 					<th>Title</th>

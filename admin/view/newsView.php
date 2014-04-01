@@ -5,6 +5,8 @@ include_once( 'admin/view/adminView.php' );
 class newsView extends adminView {
 
 	public function iniPage(&$wrapper){
+		$styleFolder = $this->getStyleFolder();
+		$wrapper-> addCss($styleFolder.'bootstrap.min.css');
 		$jsFolder = $this->getJsFolder();
 		$wrapper-> addJs($jsFolder.'news.js');
 	}
