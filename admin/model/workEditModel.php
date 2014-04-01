@@ -81,7 +81,7 @@ class workEditModel extends adminModel {
 
 	public function addData(){
 		
-		$id 	 	= $_POST['id'];
+		// $id 	 	= $_POST['id'];
 		$title 	 	= $_POST['title'];
 		$title_cn 	= $_POST['title_cn'];
 		$description = $_POST['description'];

@@ -14,19 +14,19 @@
 			<div clas="form-group">
 				<label for="englishTitle" class="col-sm-2 control-label">English Title</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="englishTitle" value="<?php if($workData) echo $workData['title'];?>">
+					<input type="text" name="title" class="form-control" id="englishTitle" value="<?php if($workData) echo $workData['title'];?>">
 				</div>
 			</div>
 			<div clas="form-group">
 				<label for="cnTitle" class="col-sm-2 control-label">標題</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="cnTitle" value="<?php if($workData) echo $workData['title_cn'];?>" name="title_cn">
+					<input type="text" name="title_cn" class="form-control" id="cnTitle" value="<?php if($workData) echo $workData['title_cn'];?>" name="title_cn">
 				</div>
 			</div>
 			<div clas="form-group">
 				<label for="description" class="col-sm-2 control-label">Description描述</label>
 				<div class="col-sm-10">
-				<textarea class="form-control" rows="3"><?php if($workData) echo $workData['description'];?></textarea>
+					<textarea name="description" class="form-control" rows="3"><?php if($workData) echo $workData['description'];?></textarea>
 				</div>
 			</div>
 			<div clas="form-group">
@@ -44,7 +44,7 @@
 			<div class="form-group">
 				<label for="imageFile" class="col-sm-2 control-label">File input</label>
 				<div class="col-sm-10">
-					<input type="file" id="imageFile">
+					<input type="file" id="imageFile" nane="img">
 				</div>
 			</div>
 			<!-- <div class="form-group">
@@ -67,7 +67,7 @@
 			</div>
 <!-- 			<input type="button" value="Cancel" onclick="cancel()"/>
 			<input type="submit" value="SAVE"/>
- -->		</form>
+ -->	</form>
 	</div>
 </div>
 <!-- javaScript -->

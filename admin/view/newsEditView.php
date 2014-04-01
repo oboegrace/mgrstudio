@@ -3,7 +3,10 @@
 include_once( 'admin/view/adminView.php' );
 
 class newsEditView extends adminView {
-
+	public function iniPage(&$wrapper){
+		$styleFolder = $this->getStyleFolder();
+		$wrapper-> addCss($styleFolder.'bootstrap.min.css');
+	}
 	public function displayContent() {
 		
 		// Get Data from Model

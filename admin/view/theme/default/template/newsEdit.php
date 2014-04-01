@@ -9,29 +9,36 @@
 </div>
 <div id="content">
 	<div class="contentArea">
-		<form action="" method="post" onsubmit="return validateForm()" name="newsForm">
-			<table cellspacing="0" cellpadding="0">	
-				<tr>
-					<th>Title</th>
-					<td><input type="text" value="<?php if($newsData) echo $newsData['title'];?>" name="title"></td>
-				</tr>
-				<tr>
-					<th>Content</th>
-					<td><textarea name="content"><?php if($newsData) echo $newsData['content'];?></textarea></td>
-				</tr>
-				<tr>
-					<th>Date</th>
-					<td><?php if($newsData) echo $newsData['date'];?></td>
-				</tr>
-			</table>
+		<br>
+		<form class="form-horizontal" role="form" action="" method="post" onsubmit="return validateForm()" name="newsForm">
+			<div clas="form-group">
+				<label for="title" class="col-sm-2 control-label">標題</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="title" value="<?php if($newsData) echo $newsData['title'];?>" name="title">
+				</div>
+			</div>
+			<div clas="form-group">
+				<label for="title" class="col-sm-2 control-label">內容</label>
+				<div class="col-sm-10">
+					<textarea name="content" class="form-control" rows="3"><?php if($newsData) echo $newsData['content'];?></textarea>
+				</div>
+			</div>
+			<div class="col-sm-2"><p class="control-label">時間</p></div>
+			<div class="col-sm-10"><p><?php if($newsData) echo $newsData['date'];?></p></div>
 			<?php if($newsData):?>
 				<input type="hidden" name="id" value="<?=$newsData['id']?>"/>
 				<input type="hidden" name="action" value="saveData"/>
 			<?php else: ?>
 				<input type="hidden" name="action" value="addData"/>
 			<?php endif;?>
-			<input type="button" value="Cancel" onclick="cancel()"/>
-			<input type="submit" value="SAVE"/>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<p>
+						<button type="submit" value="SAVE" class="btn btn-primary">Save</button>
+						<button type="button" value="Cancel" class="btn btn-default" onclick="cancel()">Cancel</button>
+					</p>
+				</div>
+			</div>
 		</form>
 	</div>
 </div>
