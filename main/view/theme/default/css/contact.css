@@ -1,0 +1,66 @@
+#row_message {
+	/*background-color: #444;*/
+}
+.input-text {
+	margin: 0 0 0 0;
+	padding: 0;
+	display: inline-block;
+	border: 1px solid #bbb;
+	padding: 2px 5px;
+	border-radius: 6px;
+	width: 100%;
+}
+.input-textarea {
+	margin-top: 20px;
+	min-height: 100px;
+	width: 100%;
+	border: 1px solid #bbb;
+	padding: 5px;
+	border-radius: 6px;
+	resize: vertical;
+}
+#messageLayoutTable {
+	width: 100%;
+}
+#inputsArea {
+	width: 100%;
+}
+#block-info {
+	margin-bottom: 40px;
+}
+#block-info i {
+	font-size: 1.2em;
+}
+#block-message {
+	margin-bottom: 10px;
+}
+#sendArea {
+	margin-top: 15px;
+	text-align: right;
+}
+#map {
+	width: 100%;
+	box-shadow: 0px 2px 5px rgba(0,0,0,0.4);
+}
+#door {
+	width: 100%;
+	box-shadow: 0px 2px 5px rgba(0,0,0,0.4);
+}
+#stamp img {
+	margin: 0;
+	padding: 0;
+	vertical-align: middle;
+}
+#mailList {
+	margin-top: 5px;
+}
+#mailList a {
+	color: #d25147;
+	text-decoration: none;
+}
+#mailList a:hover {
+
+}
+#block-message .title-hr {
+	/*background-image: url(../images/mail_hr_bg.gif);*/
+}

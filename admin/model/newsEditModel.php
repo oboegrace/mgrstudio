@@ -5,13 +5,6 @@ include_once( 'system/DataManagers/MysqlManager.php' );
 
 class newsEditModel extends adminModel {
 
-	function __construct() {
-		parent::__construct();
-
-		// Var
-		$this->pageName = 'newsEdit';
-	}
-
 	public function getNewsData() {
 
 		// get id from url

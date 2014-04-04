@@ -25,7 +25,8 @@ class HtmlWrapper {
 	public function getHtmlStart( $headerFile = '' ){
 		$r = '<html>'
 			.'<head>'
-			.'<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />';
+			.'<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />'
+			.'<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">';
 
 		if ( !empty($this->baseHref) ) {
 			$r .= '<base href="'.$this->baseHref.'" />';

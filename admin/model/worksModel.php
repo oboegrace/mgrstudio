@@ -5,12 +5,6 @@ include_once( 'system/DataManagers/MysqlManager.php' );
 
 class worksModel extends adminModel {
 
-	function __construct() {
-		parent::__construct();
-
-		// Var
-		$this->pageName = 'works';
-	}
 	public function getWorksList() {
 		// init data manager
 		$dataMag = new MysqlManager( array(
