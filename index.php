@@ -70,7 +70,7 @@ if ( is_file($file_m) && is_file($file_v) && is_file($file_c) ) {
     $view       = null;
     $controller = null;
 
-    if ( class_exists($name_m) ) $model = new $name_m();
+    if ( class_exists($name_m) ) $model = new $name_m( $pageName );
     if ( class_exists($name_c) ) $controller = new $name_c( $model, $pathElements );
     if ( class_exists($name_v) ) $view = new $name_v( $model );
 

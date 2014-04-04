@@ -3,19 +3,17 @@
 include_once( 'main/view/mainView.php' );
 
 class aboutView extends mainView {
-	public function iniPage( &$wrapper ) {
-		$styleFolder = $this->getStyleFolder();
-		$wrapper->addCss($styleFolder.'about.css');
+
+	public function initPage( &$wrapper ) {
 	}
 	public function displayContent() {
 
-		$themplateFolder = $this->getTemplateFolder();
-
 		// Get Data from Model
-		// $c = $this->model->getLangXmlContent( 'all' ); // CONTENT (XML)
+		$content1 = $this->model->getContent1();
+		$content2 = $this->model->getContent2();
 		
 		// DisplayContent
-		require( $themplateFolder.'about.php' );
+		require( $this->templateFolder.'about.php' );
 	}
 }
 

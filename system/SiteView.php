@@ -20,17 +20,18 @@ abstract class SiteView extends View {
 		$folder = $siteName.'/view/theme/'.$this->theme.'/template/';
 		return $folder;
 	}
-	public function getStyleFolder() {
+	public function getCssFolder() {
 		$siteName = $this->model->getSiteName();
-		$folder = $siteName.'/view/theme/'.$this->theme.'/style/';
+		$folder = $siteName.'/view/theme/'.$this->theme.'/css/';
 		return $folder;
 	}
-	public function getImageFolder() {
+	public function getImgFolder() {
 		$siteName = $this->model->getSiteName();
-		$folder = $siteName.'/view/theme/'.$this->theme.'/images/';
+		$folder = $siteName.'/view/theme/'.$this->theme.'/img/';
 		return $folder;
 	}
-	public function getJsFolder(){
+
+	public function getJsFolder() {
 		$siteName = $this->model->getSiteName();
 		$folder = $siteName.'/view/theme/'.$this->theme.'/js/';
 		return $folder;

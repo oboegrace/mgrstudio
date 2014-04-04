@@ -1,29 +1,22 @@
-<div id="content">
-	<div id="slideshow">
-		slideshow
+<div class="row">
+	<div class="container">
+		<div class="sixteen columns"><h2 class="content_header">About</h2></div>
 	</div>
-	<div id="highlights" >
-		<div class="container">
-			<div class="sixteen columns">
-				<h4 id="highlighTitle">Highlight Works</h4>
-			</div>
-			<div class="one-third column">
-				
-				<h4>title</h4>
-				<p>content</p>
-			</div>
-			<div class="one-third column">
-				<h4>title</h4>
-				<p>content</p>
-			</div>
-			<div class="one-third column">
-				<h4>title</h4>
-				<p>content</p>
-			</div>
-			<!-- <div>
-				<h3><?=$c->welcome_title;?></h3>
-				<p><?=$c->welcome_content;?></p>
-			</div> -->
+	<div class="container">
+		<div class="eight columns">
+			<div class="title-hr"><h5>Story</h5></div>
+			<p><?=$content1;?></p>
+		</div>
+		<div class="eight columns">
+			<img src="<?=$this->imgFolder?>about_logo.gif" id="about_img"/>
+		</div>
+	</div>
+</div>
+<div class="row dark" id="row_achievement">
+	<div class="container" id="">
+		<div class="eight columns offset-by-eight">
+			<div class="title-hr-alpha rec"><div><h5 style="color:#fff">Achievement</h5><span></span></div></div>
+			<p><?=$content2;?></p>
 		</div>
 	</div>
 </div>

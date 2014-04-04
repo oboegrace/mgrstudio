@@ -5,13 +5,6 @@ include_once( 'system/DataManagers/MysqlManager.php' );
 
 class newsModel extends adminModel {
 
-	function __construct() {
-		parent::__construct();
-
-		// Var
-		$this->pageName = 'news';
-	}
-
 	public function getNewsList() {
 		// init data manager
 		$dataMag = new MysqlManager( array(

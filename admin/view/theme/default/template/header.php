@@ -1,6 +1,6 @@
 <div id="header">
 	<div class="contentArea">
-		<a href="admin/index/"><img src="<?=$imageFolder?>logo.gif"/></a>
+		<a href="admin/index/"><img src="<?=$this->imgFolder?>logo.gif"/></a>
 		<div id="websiteBtn"><a href="index"><i class="fa fa-chevron-circle-right"></i>&nbsp;&nbsp;回網站</a></div>
 	</div>
 	<div id="menu">

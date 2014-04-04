@@ -9,8 +9,11 @@
 </div>
 <div id="content">
 	<div class="contentArea">
+		<?php if ($errorMsg): ?>
+			<p><?=$errorMsg?></p>
+		<?php endif; ?>
 		<br>
-		<form class="form-horizontal" role="form" action="" method="post" onsubmit="return validateForm()" name="workEditForm">
+		<form name="workEditForm" enctype="multipart/form-data" onsubmit="return validateForm()" class="form-horizontal" role="form" action="" method="post" >
 			<div clas="form-group">
 				<label for="englishTitle" class="col-sm-2 control-label">English Title</label>
 				<div class="col-sm-10">
@@ -41,12 +44,20 @@
 					<input type="text" class="form-control" id="fbID" value="<?php if($workData) echo $workData['youtube_id'];?>" name="youtube_id">
 				</div>
 			</div>
+			<div clas="form-group">
+				<label for="tags" class="col-sm-2 control-label">tags</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="tags" value="<?php if($workData) echo $workData['tags'];?>" name="tags">
+				</div>
+			</div>
 			<div class="form-group">
 				<label for="imageFile" class="col-sm-2 control-label">File input</label>
 				<div class="col-sm-10">
-					<input type="file" id="imageFile" nane="img">
+					<input type="file" id="imageFile" name="img"/>
+					<img src="main/workImg/<?php if($workData) echo $workData['img'];?>" class="previewImg" />
 				</div>
 			</div>
+
 			<!-- <div class="form-group">
 				<label for="date">Date</label>
 				<p class="help-block"><?php if($workData) echo $workData['date'];?></p>

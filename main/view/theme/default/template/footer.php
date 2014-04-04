@@ -1,28 +1,25 @@
 <div id="footer">
 	<div class="container">
-		<!-- contact info -->
-		<!-- <div class="sixteen columns"> -->
-		<div class="three columns">
-			<i class="fa fa-phone"></i> <?=$c->tel;?>
+		<div class="six columns">
+			<div id="footer-logo"><img src="<?=$this->imgFolder?>footer_logo.png" id="footerlogoImg" /></div>
 		</div>
-		<div class="three columns">
-			<i class="fa fa-print"></i> <?=$c->fax;?>
-		</div>
+		
 		<div class="four columns">
-			<i class="fa fa-envelope-o"></i>
-			<a class="link-mailto" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;tf=1&amp;to=service@mgrstudio.net" target="_blank"> <?=$c->email;?></a>
+			<h5>Follow Us</h5>
+			<ul class="iconList">
+				<li><a href="https://www.facebook.com/MGRstudio?fref=ts" target="_blank"><img src="<?=$this->imgFolder?>icon_facebook.png"/>Facebook</a></li>
+				<li><a href="http://vimeo.com/user24299377/videos" target="_blank"><img src="<?=$this->imgFolder?>icon_vimeo.png"/>Vimeo</a></li>
+				<li><a href="https://www.youtube.com/user/merrygoroundstudio" target="_blank"><img src="<?=$this->imgFolder?>icon_youtube.png"/>Youtube</a></li>
+			</ul>
 		</div>
-		<div class="five columns">
-			<i class="fa fa-map-marker"></i> <?=$c->address;?>
-		</div>
-
-		<div class="sixteen columns">
-			<div id="footer-logo">
-				<img src="<?=$imageFolder;?>footer_logo.png" id="footerlogoImg" />
-			</div>
-			<div id="footer-rights">
-				<?=str_replace('.', '.<br/>', $c->copyright);?>
-			</div>
+		<div class="six columns">
+			<h5>Contact</h5>
+			<ul>
+				<li><i class="fa fa-phone"></i><?=$c->tel;?></li>
+				<li><i class="fa fa-print"></i><?=$c->fax;?></li>
+				<li><a href="mailto://<?=$c->email;?>"><i class="fa fa-envelope-o"></i><?=$c->email;?></a></li>
+				<li><a href="https://www.google.com.tw/maps/place/106台北市大安區復興南路一段279巷32號"><i class="fa fa-map-marker"></i><?=$c->address;?></a></li>
+			</ul>
 		</div>
 	</div>
 </div>

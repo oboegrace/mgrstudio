@@ -283,6 +283,7 @@ class MysqlManager extends DataManager {
 		}  
 		
 	}
+
 	public function addMultiData( array $attrs, array $datas ) {
 
 		// Check attr (to)
@@ -377,8 +378,11 @@ class MysqlManager extends DataManager {
 			$vtemp = explode( '=', $attrs['target']);
 			$column = $vtemp[0];
 			$values = $vtemp[1];
-			
+			// 讀取target, 存到where
 			$where.= " ".$column." IN (".$values.")";
+		}
+		if( isset( $attrs['where'] ) ) {
+			$where = " WHERE ".$attrs['where'];
 		}
 
 		// Sql
