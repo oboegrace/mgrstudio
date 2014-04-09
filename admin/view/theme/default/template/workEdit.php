@@ -27,9 +27,9 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="description" class="col-sm-2 control-label">Description描述</label>
+				<label for="description" class="col-sm-2 control-label">描述</label>
 				<div class="col-sm-10">
-					<textarea name="description" class="form-control" rows="3"><?php if($workData) echo $workData['description'];?></textarea>
+					<textarea id="descriptionInput" name="description" class="form-control" rows="3"><?php if($workData) echo $workData['description'];?></textarea>
 				</div>
 			</div>
 			<div class="form-group">
@@ -96,22 +96,3 @@
  -->	</form>
 	</div>
 </div>
-<!-- javaScript -->
-<script>
-	function cancel(){
-		if (confirm('確定要取消編輯嗎?')){
-			// yes
-			// 用javascript 回上一頁
-			window.location = "admin/works/";
-		}
-	}
-	function validateForm(){
-		var title_v = document.forms["workEditForm"]["title"].value;
-		title_v = title_v.trim();//把頭尾空白DELETE (incase title 是空白)
-
-		if (title_v == null || title_v == ""){
-			alert("請填標題");
-			return false;
-		}
-	}
-</script>

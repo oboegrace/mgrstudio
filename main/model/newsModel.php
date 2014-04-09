@@ -5,7 +5,7 @@ include_once( 'system/DataManagers/MySqlManager.php' );
 include_once( 'system/TextFormats/simpleTextFormat.php' );
 
 class newsModel extends mainModel {
-	
+	// ===== pagination =====  //
 	private $newsPerPageCount = 2;//一頁要顯示幾則
 	private $currentPage = 1;
 	private $dataMag;
@@ -18,6 +18,7 @@ class newsModel extends mainModel {
 			'pass' => DB_PASS,
 			'name' => DB_NAME));
 	}
+	// =========== pagination ========= //
 	public function getPageCount(){
 		$dataCount = $this->dataMag->getDataCount(array(
 			'from' => 'news'));

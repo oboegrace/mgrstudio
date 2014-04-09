@@ -35,5 +35,23 @@
 				<?php endfor;?>
 			</table>
 		</form>
+		<!-- pagination -->
+		<div class="twelve columns offset-by-four">
+			<!-- <ul class="pageNumList"> -->
+			<div class="container">
+				<!-- 要如何置中? -->
+				<ul class="pagination">
+					<li><a>&laquo;</a></li>
+					<?php for($i = 1; $i<$pageCount+1; $i++): ?>
+						<?php if($i == $currentPage): ?>
+							<li class="active"><a><?=($i)?><span class="sr-only">(current)</span></a></li>
+						<?php else: ?>
+							<li><a href="admin/works/<?=($i)?>"><?=($i)?></a></li>
+						<?php endif; ?>
+					<?php endfor; ?>
+					<li><a>&raquo;</a></li>
+				</ul>
+			</div>
+		</div>
 	</div>
 </div>

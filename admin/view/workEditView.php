@@ -7,6 +7,7 @@ class workEditView extends adminView {
 	public function initPage(&$wrapper){
 		$wrapper-> addCss($this->cssFolder.'bootstrap.min.css');
 		$wrapper-> addJs($this->jsFolder.'workEdit.js');
+		$wrapper->addJs('system/js/AjaxRequest.js');
 	}
 	public function displayContent() {
 		// Get Data from Model

@@ -13,6 +13,11 @@ class worksView extends adminView {
 		// Get Data from Model
 		$themplateFolder = $this->getTemplateFolder();
 		$worksList = $this->model->getWorksList();//在worksModel implement
+		
+		// pagination
+		$pageCount = $this->model->getPageCount();
+		$currentPage = $this->model->getCurrentPage();
+
 		// DisplayContent
 		require( $themplateFolder.'works.php' );
 	}

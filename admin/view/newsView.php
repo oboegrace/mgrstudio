@@ -7,7 +7,7 @@ class newsView extends adminView {
 
 	public function initPage( &$wrapper ){
 		// lock
-		include($this->templateFolder.'lock.php');
+		// include($this->templateFolder.'lock.php');
 		$wrapper-> addCss( $this->cssFolder.'bootstrap.min.css' );
 		$wrapper-> addJs( $this->jsFolder.'news.js' );
 	}
@@ -16,8 +16,11 @@ class newsView extends adminView {
 		// Get Data from Model
 		$templateFolder = $this->getTemplateFolder();
 		$newsList = $this->model->getNewsList();//在newsModel implement
+		// $newsItems = $this->model->getNewsItems();//news list in this page
+		$pageCount = $this->model->getPageCount();
+		$currentPage = $this->model->getCurrentPage();
 		// DisplayContent
-		require( $templateFolder.'news.php' );
+		require( $this->templateFolder.'news.php' );
 	}
 }
 ?>

@@ -1,5 +1,5 @@
 // newsEdit.js
-
+// ======= ADJUST hight of input texarea ======= // 
 var contentInput = document.getElementById('contentInput');
 
 contentInput.style.height = 0;
@@ -17,7 +17,7 @@ contentInput.onkeyup = function(event){
 
 }
 
-
+// ======= form validation & cancel ====== //
 function cancel(){
 	if (confirm('確定要取消編輯嗎?')){
 		// yes

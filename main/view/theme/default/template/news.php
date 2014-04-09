@@ -19,15 +19,16 @@
 				<div class="twelve columns offset-by-four news_post">
 					<div class="title-hr-alpha circle"><div><h5><?=$item['date']?></h5><span></span></div></div>
 			<?php endif; ?>
-					<?php if(trim($item['img'])): ?>
-						<img src="main/newsImg/<?=$item['img']?>" alt="">
-					<?php endif; ?>
+				<?php if(trim($item['img'])): ?>
+					<img src="main/newsImg/<?=$item['img']?>" alt="">
+				<?php endif; ?>
 					<h3><?=$item['title']?></h3>
 
 					<p><?=$item['content']?></p>
 				</div>
 			<?php $i++; ?>
 		<?php endforeach;?>
+		<!-- pagination -->
 		<div class="twelve columns offset-by-four">
 			<ul class="pageNumList">
 				<?php for($i = 1; $i<$pageCount+1; $i++): ?>
