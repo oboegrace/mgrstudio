@@ -4,7 +4,9 @@ include_once( 'admin/view/adminView.php' );
 
 class newsEditView extends adminView {
 	public function initPage(&$wrapper){
-		$wrapper-> addCss($this->cssFolder.'bootstrap.min.css');
+		$wrapper->addCss($this->cssFolder.'bootstrap.min.css');
+		$wrapper->addJs($this->jsFolder.'newsEdit.js');
+		$wrapper->addJs('system/js/AjaxRequest.js');
 	}
 	public function displayContent() {
 		

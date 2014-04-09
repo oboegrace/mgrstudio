@@ -22,6 +22,6 @@ function AjaxRequest( actionPage, method, valueString, successFunc, errorFunc ) 
 	}
 	// Send
 	xmlhttp.open( method, actionPage, true);
-	//xmlhttp.setRequestHeader( "Content-Type", "multipart/form-data" );
+	// xmlhttp.setRequestHeader( "Content-Type", "multipart/form-data" );
 	xmlhttp.send( valueString );
 }

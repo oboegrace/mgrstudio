@@ -128,7 +128,7 @@ class MysqlManager extends DataManager {
 		}
 		//echo $sql;
 
-		// PDO
+		// PDO: PHP Data Object
 		try {
 			$pdo = new PDO( 'mysql:host='.$this->dbhost.';dbname='.$this->dbname.';charset=utf8', $this->dbuser, $this->dbpass );
 		} catch (PDOException $e) {
@@ -435,11 +435,10 @@ class MysqlManager extends DataManager {
 		if( isset( $attrs['target'] ) ) {
 			$where = str_replace( "&", " AND ", $attrs['target'] );
 			$sql = 'SELECT count(*) FROM `'.$this->dbtable.'` WHERE '.$where;
+			echo $sql;
 		} else {
 			$sql = 'SELECT count(*) FROM '.$this->dbtable;
 		}
-
-		
 
 		// PDO
 		try {

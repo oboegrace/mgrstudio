@@ -40,6 +40,8 @@ class adminView extends SiteView {
 		// Html Start
 		echo $wrapper->getHtmlStart();
 		echo '<div id="wrapper">';
+		// lock
+		// include($this->templateFolder.'lock.php');
 
 		// Header
 		include( $this->templateFolder.'header.php' );

@@ -14,7 +14,7 @@
 			<table class="table table-hover" cellspacing="0" cellpadding="0">	
 				<tr>
 					<th></th>
-					<th>Title</th>
+					<th></th>
 					<th>標題</th>
 					<th></th>
 					<th></th>
@@ -24,8 +24,10 @@
 				<tr>
 					<td><input type="checkbox" class="works_checkbox"></td>
 					<input type="hidden" class="works_id" value="<?=$worksList[$i]['id']?>">
-					<td><?=$worksList[$i]['title']?></td>
-					<td><?=$worksList[$i]['title_cn']?></td>
+					
+					<td><img src="main/workImg/thumb/<?php if($worksList) if($worksList[$i]['img']) echo $worksList[$i]['img']; else echo "empty.jpg";?>" class="previewImg" /></td>
+					<td><?=$worksList[$i]['title']?><br><small><?=$worksList[$i]['title_cn']?></small></td>
+
 					<td><a href="admin/workEdit/?id=<?=$worksList[$i]['id']?>"><i class="fa fa-pencil"/></a></td>
 					<td><a onclick="deleteWork(<?=$worksList[$i]['id']?>);" ><i class="fa fa-trash-o"></a></td>
 				</tr>

@@ -10,6 +10,7 @@
 				<li><a href="admin/news/" class="<?php if($pageName == 'news') echo 'current';?>">最新消息</a></li>
 				<li><a href="admin/works/" class="<?php if($pageName == 'works') echo 'current';?>">作品管理</a></li>
 				<li><a href="admin/settings/" class="<?php if($pageName == 'settings') echo 'current';?>">其他設定</a></li>
+				<li><a href="admin/"><?php $_SESSION['login_user']=null ?><i class="fa fa-chevron-circle-right"></i>&nbsp;&nbsp;登出</a></li>
 			</ul>
 		</div>
 	</div>

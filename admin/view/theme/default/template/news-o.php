@@ -11,35 +11,25 @@
 <div id="content">
 	<div class="contentArea">
 		<form>
-		<table class="table table-hover dataTable" cellspacing="0" cellpadding="0">	
+		<table class="table table-hover" cellspacing="0" cellpadding="0">	
 		<tr>
 			<th></th>
-			<th>最新消息</th>
+			<th>標題</th>
 			<th>Date</th>
+			<th>Image</th>	
 			<th>編輯</th>
 			<th>刪除</th>
 		</tr>
 		<!-- php for-loop -->
 		<?php for ($i = 0 ; $i < count($newsList) ; $i++): ?>
 		<tr>
-			<td style="vertical-align:middle;"><input type="checkbox" class="news_checkbox"></td>
+			<td><input type="checkbox" class="news_checkbox"></td>
 				<input type="hidden" class="news_id" value="<?=$newsList[$i]['id']?>">
-			<td>
-				<div class="media">
-					<a href="admin/newsEdit/?id=<?=$newsList[$i]['id']?>" class="pull-left thumbnail">
-						<img src="main/newsImg/thumb/<?php if($newsList) echo $newsList[$i]['img'];?>" class="previewImg" />
-					</a>
-					<div class="media-body">
-						<a href="admin/newsEdit/?id=<?=$newsList[$i]['id']?>">
-							<h5 class="media-heading"><?=$newsList[$i]['title']?></h5>
-						</a>
-						<small><?=mb_substr($newsList[$i]['content'],0,10,"utf-8")?>...</small>
-					</div>
-				</div>
-			</td>
+			<td><?=$newsList[$i]['title']?></td>
 			<td><?=str_replace('-','/',substr($newsList[$i]['date'],0,16))?></td>
-			<td><span class="iconButton"><a href="admin/newsEdit/?id=<?=$newsList[$i]['id']?>"><i class="fa fa-pencil"></a></span></td>
-			<td><span class="iconButton"><a onclick="deleteNews(<?=$newsList[$i]['id']?>);"><i class="fa fa-trash-o"></a></span></td>
+			<td><img src="main/newsImg/thumb/<?php if($newsList) echo $newsList[$i]['img'];?>" class="previewImg" /></td>
+			<td><a href="admin/newsEdit/?id=<?=$newsList[$i]['id']?>"><i class="fa fa-pencil"></a></td>
+			<td><a onclick="deleteNews(<?=$newsList[$i]['id']?>);"><i class="fa fa-trash-o"></a></td>
 		</tr>
 		<!-- 呼叫new.js 的deleteNews() 產生表單＆送出 -->
 		<?php endfor;?>

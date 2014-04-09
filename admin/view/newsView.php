@@ -1,10 +1,13 @@
 <?php 
 
+
 include_once( 'admin/view/adminView.php' );
 // newsView: 跟model拿變數 交給template去用
 class newsView extends adminView {
 
 	public function initPage( &$wrapper ){
+		// lock
+		include($this->templateFolder.'lock.php');
 		$wrapper-> addCss( $this->cssFolder.'bootstrap.min.css' );
 		$wrapper-> addJs( $this->jsFolder.'news.js' );
 	}

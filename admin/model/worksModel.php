@@ -16,7 +16,7 @@ class worksModel extends adminModel {
 		// get data
 		$dataList = $dataMag->getDataList( array(
 			'from' => 'work',
-			'column' => 'id, title, title_cn'));	//只取要的欄位
+			'column' => 'id, title, title_cn, img'));	//只取要的欄位
 		// var_dump($dataList);
 		return $dataList;
 	}

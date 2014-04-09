@@ -9,7 +9,9 @@ class newsView extends mainView {
 	public function displayContent() {
 
 		// Get Data from Model
-		
+		$newsItems = $this->model->getNewsItems();
+		$pageCount = $this->model->getPageCount();
+		$currentPage = $this->model->getCurrentPage();
 		// DisplayContent
 		require( $this->templateFolder.'news.php' );
 	}

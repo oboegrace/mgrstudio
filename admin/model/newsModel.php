@@ -16,7 +16,7 @@ class newsModel extends adminModel {
 		// get data
 		$dataList = $dataMag->getDataList( array(
 			'from' => 'news',
-			'column' => 'id, title, date'));	//只取要的欄位
+			'column' => 'id, title, date, img, content'));	//只取要的欄位
 		// var_dump($dataList);
 		return $dataList;
 	}

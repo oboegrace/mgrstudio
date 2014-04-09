@@ -43,13 +43,37 @@ class workEditModel extends adminModel {
 		// 	array_push($tags, $tags_tmp[$i]['tag']);
 		// 	// 把$tag_tmp[i]['tag']轉存到 $tags[i]
 		// }
-		// 把陣列全部用','串起來，輸出成一個字串
+		// 
 		// 再塞進去data內回傳
+		// ======== get tag data ========== //
 		$tags = $this->getWorkTagArray( $dataMag, $id );
-
+		// implode --- 將陣列的元素用','串起來，輸出成一個字串
 		$data[0]['tags'] = implode(',', $tags);
 
 		return $data[0];
+
+	}
+	public function getTagList(){
+		$dataMag = new MysqlManager( array(
+			'host' => DB_HOST,
+			'user' => DB_USER,
+			'pass' => DB_PASS,
+			'name' => DB_NAME));
+
+		$temp = $dataMag->getDataList( array(
+			'from' => 'work_tag',
+			'query' => 'SELECT DISTINCT tag FROM work_tag',
+			));
+		// 過濾空字串
+		$result = array();
+		foreach ($temp as $item){
+			$tag = $item["tag"];
+			if (trim($tag) != ""){
+				array_push( $result, $tag );
+			}
+		}
+
+		return $result;
 
 	}
 	private function getWorkTagArray( $dataMag, $id ){
@@ -71,13 +95,14 @@ class workEditModel extends adminModel {
 	}
 	public function saveData(){
 
-		// init data manager
+		//== init data manager
 		$dataMag = new MysqlManager( array(
 			'host' => DB_HOST,
 			'user' => DB_USER,
 			'pass' => DB_PASS,
 			'name' => DB_NAME));//already defined in config.php
 
+		//== get data from front-end form
 		$id 	 	 = $_POST['id'];
 		$title 	 	 = $_POST['title'];
 		$title_cn 	 = $_POST['title_cn'];
@@ -85,77 +110,84 @@ class workEditModel extends adminModel {
 		$vimeo_id	 = $_POST['vimeo_id'];
 		$youtube_id	 = $_POST['youtube_id'];
 		$tags 		 = $_POST['tags'];
+		$seq		 = $_POST['seq'];
 		$img         = null;
 
+		// ======== upload IMAGE ========== //
 		// upload image file
-		$img_name	    = $_FILES['img']['name'];		// origin file name
-		$img_tempPath   = $_FILES['img']['tmp_name'];	// tmp folder which oploaded file exists
+		if(isset($_FILES['img'])){
+			$img_name	    = $_FILES['img']['name'];		// get original file name
+			$img_tempPath   = $_FILES['img']['tmp_name'];	// get tmp folder which oploaded file exists
 
-		$target_rand 	 = time();
-		$target_fileEx   = strtolower(end(explode('.', $img_name)));
-		$target_fileName = $target_rand.'.'.$target_fileEx;
-		$folder_origin   = 'main/workImg/';
-		$folder_medium   = 'main/workImg/medium/';
-		$folder_thumb    = 'main/workImg/thumb/';
-		$img_path_origin = $folder_origin.$target_fileName;
-		$img_path_medium = $folder_medium.$target_fileName;
-		$img_path_thumb  = $folder_thumb.$target_fileName;
+			$target_rand 	 = time();						//generate random number for file name
+			$target_fileEx   = strtolower(end(explode('.', $img_name)));	//附檔名
+			//取得的檔名可能會是image/jpg或IMAGE/JPG str_to_lower轉換成小寫＆end只取最後一的part, 用.來分開
+			$target_fileName = $target_rand.'.'.$target_fileEx;	//設定存檔檔名rand.jpg
+			
+			// create folders for 3 different size of images
+			$folder_origin   = 'main/workImg/';
+			$folder_medium   = 'main/workImg/medium/';
+			$folder_thumb    = 'main/workImg/thumb/';
+			
+			// set file path & name
+			$img_path_origin = $folder_origin.$target_fileName;
+			$img_path_medium = $folder_medium.$target_fileName;
+			$img_path_thumb  = $folder_thumb.$target_fileName;
 
-		// Check file type
-		if ( $target_fileEx == 'jpg' ) {
-			// copy temp file to target folder
-			if ( move_uploaded_file( $img_tempPath, $img_path_origin ) ) {
+			// Check file type
+			if ( $target_fileEx == 'jpg') {
+				// copy temp file to target folder
+				if ( move_uploaded_file( $img_tempPath, $img_path_origin ) ) {
 
-				// db value
-				$img = $target_fileName;
+					// db value 記錄存檔檔名在data base的img欄位
+					$img = $target_fileName;
 
-				// resizes
-				$this->ImageResize( $img_path_origin, $img_path_medium, 360, 200, 100 );
-				$this->ImageResize( $img_path_origin, $img_path_thumb,  72, 40, 100 );
+					// resizes
+					$this->ImageResize( $img_path_origin, $img_path_medium, 360, 200, 100 );
+					$this->ImageResize( $img_path_origin, $img_path_thumb,  72, 40, 100 );
 
-				// remove
-				// get origin file name from db
-				$dbTemp = $dataMag->getDataList( array(
-					'from' => 'work',
-					'target' => 'id='.$id,
-					'column' => 'img' ));
+					// === remove original file if there is one ===//
+					// get origin file name from db
+					$dbTemp = $dataMag->getDataList( array(
+						'from' => 'work',
+						'target' => 'id='.$id,
+						'column' => 'img' ));
 
-				$oFileName = $dbTemp[0]['img'];
-				
-				if ( is_file($folder_origin.$oFileName) ) {
-					unlink( $folder_origin.$oFileName );
+					// original file name: $oFileName
+					$oFileName = $dbTemp[0]['img'];
+					
+					// remove original file if there is one
+					if ( is_file($folder_origin.$oFileName) ) {	//incase it's a folder not a file
+						unlink( $folder_origin.$oFileName );	//use 'unlink' to remove the file
+					}
+					if ( is_file($folder_medium.$oFileName) ) {
+						unlink( $folder_medium.$oFileName );
+					}
+					if ( is_file($folder_thumb.$oFileName) ) {
+						unlink( $folder_thumb.$oFileName );
+					}
+
+				} else {
+					$this->errorMsg = 'File Upload Error:Has problem to move image file from tmp file.';
 				}
-				if ( is_file($folder_medium.$oFileName) ) {
-					unlink( $folder_medium.$oFileName );
-				}
-				if ( is_file($folder_thumb.$oFileName) ) {
-					unlink( $folder_thumb.$oFileName );
-				}
-
 			} else {
-				$this->errorMsg = 'File Upload Error.';
+				$this->errorMsg = 'File Type Error. or No file uploaded.';
 			}
-		} else {
-			$this->errorMsg = 'File Type Error.';
 		}
-
-
-
-
 		// Setup Data Values
 		$dataArray = array(
 				'title' 	=> $title,
 				'title_cn' 	=> $title_cn, 
 				'description' => $description,
 				'vimeo_id'	=> $vimeo_id,
-				'youtube_id'=> $youtube_id );
+				'youtube_id'=> $youtube_id,
+				'seq' 		=> $seq );
 
 		if ( $img ) {
 			$dataArray['img'] = $img;
 		}
 		
-		
-		// DB
+		// DB manager call updateData function
 		$dataMag->updateData(
 			array(
 				'from' => 'work',
@@ -230,9 +262,12 @@ class workEditModel extends adminModel {
 		}
 		
 
-		/*if ( $this->errorMsg == null )
-			header("Location: ../works");*/
-	}
+		if ( $this->errorMsg == null ){
+			header("Location: ../works");
+		}else{
+			echo $this->errorMsg;
+		}
+	}//end saveData
 	public function getErrorMsg() {
 		return $this->errorMsg;
 	}
@@ -244,6 +279,7 @@ class workEditModel extends adminModel {
 		$description 	= '';
 		$vimeo_id 		= '';
 		$youtube_id 	= '';
+		$seq			= '';
 
 		// check post value
 		if ( isset($_POST['title']) ) {
@@ -261,6 +297,61 @@ class workEditModel extends adminModel {
 		if ( isset($_POST['youtube_id']) ) {
 			$youtube_id = $_POST['youtube_id'];
 		}
+		if ( isset($_POST['seq']) ){
+			$seq = $_POST['seq'];
+		}
+		// ======== upload IMAGE ========== //
+		if( isset($_FILES['img']) ){
+			$img_name	    = $_FILES['img']['name'];		// get original file name
+			$img_tempPath   = $_FILES['img']['tmp_name'];	// get tmp folder which oploaded file exists
+
+			$target_rand 	 = time();						//generate random number for file name
+			$target_fileEx   = strtolower(end(explode('.', $img_name)));	//附檔名
+			//取得的檔名可能會是image/jpg或IMAGE/JPG str_to_lower轉換成小寫＆end只取最後一的part, 用.來分開
+			$target_fileName = $target_rand.'.'.$target_fileEx;	//設定存檔檔名rand.jpg
+			
+			// create folders for 3 different size of images
+			$folder_origin   = 'main/workImg/';
+			$folder_medium   = 'main/workImg/medium/';
+			$folder_thumb    = 'main/workImg/thumb/';
+			
+			// set file path & name
+			$img_path_origin = $folder_origin.$target_fileName;
+			$img_path_medium = $folder_medium.$target_fileName;
+			$img_path_thumb  = $folder_thumb.$target_fileName;
+
+			// Check file type
+			if ( $target_fileEx == 'jpg') {
+				// copy temp file to target folder
+				if ( move_uploaded_file( $img_tempPath, $img_path_origin ) ) {
+
+					// db value 記錄存檔檔名在data base的img欄位
+					$img = $target_fileName;
+
+					// resizes
+					$this->ImageResize( $img_path_origin, $img_path_medium, 360, 200, 100 );
+					$this->ImageResize( $img_path_origin, $img_path_thumb,  72, 40, 100 );
+
+				} else {
+					$this->errorMsg = 'File Upload Error:Has problem to move image file from tmp file.';
+				}
+			} else {
+				$this->errorMsg = 'File Type Error. or No file uploaded.';
+			}
+		}
+		// Setup Data Values
+		// Setup Data Values
+		$dataArray = array(
+				'title' 	=> $title,
+				'title_cn' 	=> $title_cn, 
+				'description' => $description,
+				'vimeo_id'	=> $vimeo_id,
+				'youtube_id'=> $youtube_id,
+				'seq' 		=> $seq );
+
+		if ( $img ) {
+			$dataArray['img'] = $img;
+		}
 
 		// init data manager
 		$dataMag = new MysqlManager( array(
@@ -272,15 +363,15 @@ class workEditModel extends adminModel {
 		$dataMag->addData(
 			array(
 				'to' => 'work'), 
-			array(
-				'title' 	=> $title,
-				'title_cn' 	=> $title_cn, 
-				'description' => $description,
-				'vimeo_id'	=> $vimeo_id,
-				'youtube_id'=> $youtube_id
-			)
+			$dataArray
 		);
-		header("Location: ../works");
+
+		// return to works list or send error message
+		if ( $this->errorMsg == null ){
+			header("Location: ../works");
+		}else{
+			echo $this->errorMsg;
+		}
 	}
 	private function ImageResize($from_filename, $save_filename, $in_width=400, $in_height=300, $quality=100) {
 	    $sub_name = $t = '';
@@ -319,7 +410,7 @@ class workEditModel extends adminModel {
 	private function getResizePercent($source_w, $source_h, $inside_w, $inside_h) {
 		$percent = 1;
 		if ($source_w / $source_h > $inside_w / $inside_h) {
-			// widther
+			// wider
 			$percent = $inside_h / $source_h;
 			
 		} else {
@@ -327,19 +418,6 @@ class workEditModel extends adminModel {
 			$percent = $inside_w / $source_w;
 		}
 		return $percent;
-		/*
-	    if ($source_w < $inside_w && $source_h < $inside_h) {
-	        return 1; // Percent = 1, 如果都比預計縮圖的小就不用縮
-	    }
-
-	    $w_percent = $inside_w / $source_w;
-	    $h_percent = $inside_h / $source_h;
-
-	    return ($w_percent > $h_percent) ? $h_percent : $w_percent;
-	    */
 	}
 }
-
-
-
 ?>

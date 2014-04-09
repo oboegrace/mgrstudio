@@ -18,10 +18,15 @@ class websiteModel extends adminModel {
 
 	function __construct() {
 		parent::__construct();
-
-		// Vars
+		
+		// $this->pageName = $pageName;
 		$this->pageName = 'website';
-
+	/*function __construct($pageName) {
+		parent::__construct();
+		
+		$this->pageName = $pageName;
+		$this->siteName = 'website';
+	*/
 		// WebpageName
 		$this->webpageName = 'all'; // default
 		if ( isset($_GET['page']) )

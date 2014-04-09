@@ -59,6 +59,23 @@ p {
 	margin-right: 10px;
 
 }
+.pageNumList{
+	text-align: center;
+	font-size: 0;
+}
+.pageNumList li{
+	display: inline-block;
+}
+.pageNumList li a{
+	font-size: 10pt;
+	padding: 5px 10px;
+	border: 1px solid #ccc;
+	margin: 5px;
+}
+.pageNumList .current{
+	font-weight: bold;
+	border: 0;
+}
 /* ----------------------------------------------- */
 /*					Font Face 					   */
 /* ----------------------------------------------- */
