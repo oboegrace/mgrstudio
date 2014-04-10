@@ -30,7 +30,7 @@
 				<label for="imageFile" class="col-sm-2 control-label">圖片</label>
 				<div class="col-sm-10">
 					<input type="file" id="imageFile" name="img" style="display:none"/>
-					<!-- preview image -->
+					<!-- preview image(AJAX) -->
 					<img onclick="changeImage();" id="newsImage" src="main/newsImg/<?php if($newsData) echo $newsData['img'];?>" class="previewImg img-thumbnail" />
 				</div>
 			</div>

@@ -34,7 +34,7 @@ function validateForm(){
 		return false;
 	}
 }
-
+// ======= AJAX UPLOAD IMAGE PREVIEW ======= //
 document.getElementById('imageFile').onchange = function(){//換圖的時候執行
 	// 按下確定後， do ajax post
 	startAjaxUpload( this.files[0] ); // this 是function 的主人: document.getElementById('imageFile')
@@ -78,5 +78,3 @@ function startAjaxUpload(file){
 			console.log('failed:'+backValue);
 		} ) ;
 }
-
-

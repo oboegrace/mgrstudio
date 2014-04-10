@@ -419,5 +419,31 @@ class workEditModel extends adminModel {
 		}
 		return $percent;
 	}
+
+	public function uploadTempImage( $FILE ){
+		// ======== upload IMAGE for PREVIEW========== //
+		$img_name	    = $FILE['name'];		// get original file name
+		$img_tempPath   = $FILE['tmp_name'];	// get tmp folder which oploaded file exists
+		$target_fileEx   = strtolower(end(explode('.', $img_name)));	//附檔名
+		$folder_temp   = 'temp/';
+		// set file path & name
+		$img_targetPath  = $folder_temp.$img_name;
+		
+
+		// Check file type
+		if ( $target_fileEx == 'jpg') {
+			// copy temp file to target folder
+			if ( move_uploaded_file( $img_tempPath, $img_targetPath ) ) {
+				return $img_targetPath;
+
+			} else {
+				//$this->errorMsg = 'File Upload Error:Has problem to move image file from tmp file.';
+				return 'error_upload';
+			}
+		} else {
+			//$this->errorMsg = 'File Type Error. or No file uploaded.';
+			return 'error_filetype';
+		}
+	}
 }
 ?>

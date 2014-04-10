@@ -35,3 +35,49 @@ function validateForm(){
 		return false;
 	}
 }
+
+// ======= AJAX UPLOAD IMAGE PREVIEW ======= //
+document.getElementById('imageFile').onchange = function(){
+	// 換圖的時候&按下確定後， do ajax post
+	startAjaxUpload( this.files[0] ); 
+	// this 是function 的主人: document.getElementById('imageFile')
+
+}
+// Preview area onclick 呼叫 to open file dialog 
+function changeImage(){
+	document.getElementById('imageFile').click();
+	// as if file input area is clicked
+}
+
+
+function startAjaxUpload(file){
+
+	// show loading
+
+	// prepare datas
+	var formData = new FormData();
+
+	formData.append('ajax', 'uploadImage');// variable name & variable value
+	formData.append('file', file);
+
+	// ajax request
+	// 用javascript呼叫php 回傳內容
+	AjaxRequest( 'admin/workEdit/', 'POST', formData, 
+		function(backValue){
+			// success
+			// 上傳成功的話，在網頁上顯示圖片
+			if( backValue == 'error_upload' ){
+				//error message todo
+			}else if ( backValue == 'error_filetype' ){
+				//error message todo
+			}else{
+				document.getElementById('imageUploadPreview').src=backValue;
+				console.log('success:'+backValue);
+			}
+			
+		}, 
+		function(backValue){
+			// failed
+			console.log('failed:'+backValue);
+		} ) ;
+}

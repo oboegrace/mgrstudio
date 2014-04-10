@@ -67,9 +67,9 @@
 			<div class="form-group">
 				<label for="imageFile" class="col-sm-2 control-label">File input</label>
 				<div class="col-sm-10">
-					<input type="file" id="imageFile" name="img"/>
+					<input type="file" id="imageFile" name="img" style="display:none"/>
 					<!-- preview image -->
-					<img src="main/workImg/<?php if($workData) echo $workData['img'];?>" class="previewImg img-thumbnail" />
+					<img onclick="changeImage();" id="imageUploadPreview" src="main/workImg/<?php if($workData) echo $workData['img'];?>" class="previewImg img-thumbnail" />
 				</div>
 			</div>
 

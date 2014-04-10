@@ -10,8 +10,8 @@ class workEditController extends adminController {
 		$this->model->addData();
 	}	
 	public function ajax_uploadImage(){
-		// $tempPath = $this->model->uploadTempImage($_FILES['file']);
-		// echo $tempPath;
+		$tempPath = $this->model->uploadTempImage($_FILES['file']);
+		echo $tempPath;
 	}
 
 }
