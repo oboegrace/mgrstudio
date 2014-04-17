@@ -3,6 +3,7 @@
 		<div class="sixteen columns"><h2 class="content_header">Works</h2></div>
 	</div>
 	<div class="container">
+		<!-- Category Menu -->
 		<div class="sixteen columns" id="categoryMenu">
 			<ul>
 				<li><a href="works/all"><span>All</span></a></li>
@@ -18,71 +19,25 @@
 <div class="row" id="">
 	<div class="container" id="">
 		<div class="sixteen columns">
-			<div class="title-hr"><h5>All</h5></div>
+			<!-- Page Title -->
+			<div class="title-hr"><h5 id="currentCategory"><?=$currentCategory?></h5></div>
 		</div>
-		
-		<div class="one-third column">
-			<div class="workItem">
-				<img src="main/workData/0001_s.jpg" />
-				<h5>華碩 Eee Pad 故事 - 獻寶篇</h5>
-				<h4>ASUS Eee Pad Story</h4>
+		<!-- work item #1 -->
+		<?php for($i = 0; $i < count($worksList) ; $i++):?>
+			
+			<?php if ( $i%3 == 0 ): ?>
+				<div class="sixteen columns"></div>
+			<?php endif; ?>
+
+			<div class="one-third column">
+				<a href="work/<?=$worksList[$i]['id']?>">
+					<div class="workItem">
+						<img src="main/workImg/medium/<?php if($worksList) if($worksList[$i]['img']) echo $worksList[$i]['img']; else echo "empty.jpg";?>" class="previewImg" />
+						<h5><?=$worksList[$i]['title_cn']?></h5>
+						<h4><?=$worksList[$i]['title']?></h4>
+					</div>
+				</a>
 			</div>
-		</div>
-		<div class="one-third column">
-			<div class="workItem">
-				<img src="main/workData/0002_s.jpg" />
-				<h5>華碩 Eee Pad 故事 - 獻寶篇</h5>
-				<h4>ASUS Eee Pad Story</h4>
-			</div>
-		</div>
-		<div class="one-third column">
-			<div class="workItem">
-				<img src="main/workData/0003_s.jpg" />
-				<h5>華碩 Eee Pad 故事 - 獻寶篇</h5>
-				<h4>ASUS Eee Pad Story</h4>
-			</div>
-		</div>
-		<div class="one-third column">
-			<div class="workItem">
-				<img src="main/workData/0004_s.jpg" />
-				<h5>華碩 Eee Pad 故事 - 獻寶篇</h5>
-				<h4>ASUS Eee Pad Story</h4>
-			</div>
-		</div>
-		<div class="one-third column">
-			<div class="workItem">
-				<img src="main/workData/0008_s.jpg" />
-				<h5>華碩 Eee Pad 故事 - 獻寶篇</h5>
-				<h4>ASUS Eee Pad Story</h4>
-			</div>
-		</div>
-		<div class="one-third column">
-			<div class="workItem">
-				<img src="main/workData/0006_s.jpg" />
-				<h5>華碩 Eee Pad 故事 - 獻寶篇</h5>
-				<h4>ASUS Eee Pad Story</h4>
-			</div>
-		</div>
-		<div class="one-third column">
-			<div class="workItem">
-				<img src="main/workData/0007_s.jpg" />
-				<h5>華碩 Eee Pad 故事 - 獻寶篇</h5>
-				<h4>ASUS Eee Pad Story</h4>
-			</div>
-		</div>
-		<div class="one-third column">
-			<div class="workItem">
-				<img src="main/workData/0005_s.jpg" />
-				<h5>華碩 Eee Pad 故事 - 獻寶篇</h5>
-				<h4>ASUS Eee Pad Story</h4>
-			</div>
-		</div>
-		<div class="one-third column">
-			<div class="workItem">
-				<img src="main/workData/0003_s.jpg" />
-				<h5>華碩 Eee Pad 故事 - 獻寶篇</h5>
-				<h4>ASUS Eee Pad Story</h4>
-			</div>
-		</div>
+		<?php endfor; ?>
 	</div>
 </div>

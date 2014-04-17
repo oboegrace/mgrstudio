@@ -14,6 +14,7 @@ class workEditView extends adminView {
 		$workData = $this->model->getWorkData();
 		$errorMsg = $this->model->getErrorMsg();
 		$tagList  = $this->model->getTagList();
+		$imgList  = $this->model->getImgList();
 
 		// DisplayContent
 		require( $this->templateFolder.'workEdit.php' );

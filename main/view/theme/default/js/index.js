@@ -1,3 +1,4 @@
+
 var slideshow = {};
 slideshow.currNum = 0;
 slideshow.delay = 7000;
@@ -5,21 +6,28 @@ slideshow.ratio = 1920 / 700;
 slideshow.ratio_list = 300 / 150;
 slideshow.container;
 slideshow.titles = [
-	'Eee Pad Transformer Prime',
-	'ASUS NX90 Decibel',
-	'ASUS UL Racing edition',
-	'Design Story Incredible J',
-	'The Eee Pad Story'];
+	'title1',
+	'title2',
+	'title3',
+	'title4',
+	'title5'];
 
 slideshow.ctitles = [
-	'至尊變形平板 王者現身',
-	'華碩 NX90 分貝篇',
-	'全球電視廣告 賽車篇',
-	'追尋無與倫比',
-	'獻寶篇'];
+	'chinese title1',
+	'chinese title2',
+	'chinese title3',
+	'chinese title4',
+	'chinese title5'];
 
+slideshow.setTitles = function(titleArray) {
+	this.titles = titleArray;
+}
+slideshow.setCTitles = function(ctitleArray) {
+	this.ctitles = ctitleArray;
+}
 
 slideshow.init = function() {
+
 	// wrapper
 	this.wrapper = document.getElementById( 'slideshow' );
 

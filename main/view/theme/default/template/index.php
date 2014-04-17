@@ -2,17 +2,14 @@
 	<div id="slideshow_area">
 		<div id="slideshow">
 			<div id="slideshow_container">
-				<div class="slideshow_item" style="background-image:url(main/workData/0005_l.jpg);"></div>
-				<div class="slideshow_item" style="background-image:url(main/workData/0001_l.jpg);opacity:0;"></div>
-				<div class="slideshow_item" style="background-image:url(main/workData/0002_l.jpg);opacity:0;"></div>
-				<div class="slideshow_item" style="background-image:url(main/workData/0003_l.jpg);opacity:0;"></div>
-				<div class="slideshow_item" style="background-image:url(main/workData/0004_l.jpg);opacity:0;"></div>
+				<?php for ( $i=0; $i< count($newWorks); $i++ ): ?>
+					<div class="slideshow_item" style="background-image:url(main/workImg/<?=$newWorks[$i]['img']?>);"></div>
+				<?php endfor; ?>
 			</div>
 			<div id="slideshow_title">
-				<!-- <div class="item" id="slideshow_title_icon"></div> -->
 				<div class="item" id="slideshow_title_content">
-					<div id="slideshow_title_eng" class="eng">ASUS NX90 Decibel</div>
-					<div id="slideshow_title_cht" class="cht">華碩 NX90 分貝篇</div>
+					<div id="slideshow_title_eng" class="eng"><?=$newWorks[0]['title'];?></div>
+					<div id="slideshow_title_cht" class="cht"><?=$newWorks[0]['title_cn'];?></div>
 				</div>
 			</div>
 		</div>
@@ -29,39 +26,48 @@
 			</div>
 		</div>
 	</div>
+	<!-- highlights -->
 	<div id="highlights" >
 		<div class="container">
-			
 			<div class="sixteen columns">
-				<div class="title-hr-center"><h5>Feature Works</h5></div>
+				<div class="title-hr-center"><h5>Hightlights</h5></div>
 			</div>
-			<div class="one-third column">
-				<div class="featurework-item first">
-					<img src="main/workData/0007_s.jpg" />
-					<h5>不老騎士-歐兜邁環台日記</h5>
-					<h4>Go Grandriders!</h4>
-					<div class="hr"></div>
-					<p>17個高齡80歲的國寶，13天超乎想像的環島旅程，透過鏡頭，我們誠實記錄了不老騎士背後的夢想、勇氣與人生。</p>
+			<!-- highlight item -->
+			<?php for($i = 0; $i < count($highlight) ; $i++):?>
+				<div class="one-third column">
+					<div class="highlights-item first">
+						<img src="main/workImg/medium/<?php if($highlight) if($highlight[$i]['img']) echo $highlight[$i]['img']; else echo "empty.jpg";?>" />
+						<h5><?=$highlight[$i]['title_cn']?></h5>
+						<h4><?=$highlight[$i]['title']?></h4>
+						<p><?=$highlight[$i]['description']?></p>
+					</div>
 				</div>
-			</div>
-			<div class="one-third column">
-				<div class="featurework-item">
-					<img src="main/workData/0006_s.jpg" />
-					<h5>華碩 NX90 分貝篇</h5>
-					<h4>ASUS NX90 Decibel</h4>
-					<div class="hr"></div>
-					<p>本案目標在傳達商品設計背後的故事。透過水滴、琴弦等質感細節，讓產品在高格調之外，亦展現柔性純粹的品牌...</p>
-				</div>
-			</div>
-			<div class="one-third column">
-				<div class="featurework-item last">
-					<img src="main/workData/0008_s.jpg" />
-					<h5>華碩 Eee Pad 故事 - 獻寶篇</h5>
-					<h4>ASUS Eee Pad Story ASUS Eee Pad Story ASUS Eee Pad Story</h4>
-					<div class="hr"></div>
-					<p>如何將繁雜的資訊給調理組織，並兼顧順暢氣氛？在製作上，我們運用大量「時間感」動畫構圖，讓人像是翻開一本生動的歷史年鑑般，輕鬆閱讀。</p>
-				</div>
-			</div>
+			<?php endfor; ?>
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript" src="<?=$this->jsFolder?>index.js"></script>
+<script type="text/javascript">
+slideshow.titles = [
+	<?php 
+	for ( $i=0; $i< count($newWorks); $i++ ) {
+		echo "'".$newWorks[$i]['title']."'";
+		if ( $i < count($newWorks) - 1 ) {
+			echo ",";
+		}
+	}
+	?>
+];
+
+slideshow.ctitles = [
+	<?php 
+	for ( $i=0; $i< count($newWorks); $i++ ) {
+		echo "'".$newWorks[$i]['title_cn']."'";
+		if ( $i < count($newWorks) - 1 ) {
+			echo ",";
+		}
+	}
+	?>
+];
+</script>

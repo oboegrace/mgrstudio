@@ -1,75 +1,48 @@
 #header {
   border-bottom: 0;
 }
-/* ----------------------------------------------- */
-/*                 HightLight                      */
-/* ----------------------------------------------- */
-#highlights {
-  margin: 70px 0;
-}
-#highlighTitle {
-	text-align: center;
-	border-top: 1px solid #ccc;
-	margin-top: 30px;
-	padding: 5px 0;
-	text-transform: uppercase;
-}
-.highlights-item {
-}
-.highlights-item .imgFrame {
-  background-color: #000;
-}
-.highlights-item img {
-  width: 100%;
-
-}
-.highlights-item:hover img {
-}
-/* title (english) */
-.highlights-item h4 {
-  margin-bottom: 5px;
-  /*text-transform: uppercase;*/
-  font-family: Roboto;
-}
-/* title (chinese) */
-.highlights-item p {
-  padding-top: 5px;
-  font-family: Arial;
-  font-size: 9pt;
-
-}
-.featurework-item {
-  margin-top: 10px;
-  padding: 0 5px;
-}
 .first {
   padding-left: 0;
 }
 .last {
   padding-right: 0;
 }
-.featurework-item img {
+/* ----------------------------------------------- */
+/*                 HightLight                      */
+/* ----------------------------------------------- */
+#highlights {
+  margin: 70px 0;
+}
+.highlights-item {
+  margin-top: 10px;
+  padding: 0 5px;
+}
+.highlights-item img {
   width: 100%;
   box-shadow: 0px 2px 5px rgba(0,0,0,0.4);
 }
-.featurework-item h4 {
-  font-family: roboto;
-  font-size: 1.3em;
-  padding: 0;
-}
-.featurework-item h5 {
+.highlights-item h5 {
   font-style: normal;
   display: block;
-  padding: 8px 0 0 0;
+  padding: 13px 0 0 0;
   margin: 0;
   color: #888;
   font-size: 9pt;
   font-weight: bold;
   font-family: 'Microsoft JhengHei', \5FAE\8EDF\6B63\9ED1\9AD4,\65B0\7D30\660E\9AD4;
 }
-.featurework-item .hr {
-  margin: 6px 0 10px 0;
+.highlights-item h4 {
+  font-family: roboto;
+  font-size: 1.3em;
+  padding: 0;
+  margin: -6px 0 10px 0;
+}
+.highlights-item .hr {
+  margin: 8px 0 10px 0;
   opacity: 0.5;
+}
+.highlights-item p {
+  text-align: justify;
 }
 /* ----------------------------------------------- */
 /*                 Slide Show                      */
@@ -232,27 +205,6 @@
 /* ----------------------------------------------- */
 /*                  Media Queries                  */
 /* ----------------------------------------------- */
-.highlights-container {
-  position: relative;
-  max-width: 1280px;
-  margin: 0 auto;
-  text-align: center;
-  font-size: 0;
-}
-.highlights-container .first {
-  border-left: 0;
-}
-.highlights-item {
-  vertical-align: top;
-  display: inline-block;
-  width: 24%;
-  text-align: left;
-  border-left: 1px dotted #bbb;
-  margin-bottom: 30px;
-}
-.highlights-content {
-  padding: 0 25px;
-}
 @media only screen and (max-width: 959px) {
   .highlights-item {
     width: 32%;

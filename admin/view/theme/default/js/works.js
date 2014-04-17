@@ -1,3 +1,28 @@
+function checkAll(field){
+	for ( var i = 0 ; i < field.length ; i++){
+		field[i].checked = true;
+	}
+	document.getElementById('CheckAll').type = "hidden";
+	
+	var unCheck = document.getElementById('UnCheckAll')
+	unCheck.type = "checkbox";
+	unCheck.checked = true;
+
+	return ;
+}
+function uncheckAll(field){
+	console.log("uncheckAll");
+	for ( var i = 0 ; i < field.length ; i++){
+		field[i].checked = false;
+	}
+	var check = document.getElementById('CheckAll');
+	check.type = "checkbox";
+	check.checked = false;
+
+	document.getElementById('UnCheckAll').type = "hidden";
+	return ;
+}
+
 function deleteWork(id){
 	if (!confirm("確定要刪除此筆資料嗎?")){
 		return ;

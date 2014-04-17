@@ -2,7 +2,6 @@
 
 include_once( 'system/SiteView.php' );
 
-
 class adminView extends SiteView {
 
 	protected $templateFolder = '';

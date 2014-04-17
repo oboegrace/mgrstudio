@@ -10,6 +10,7 @@ class newsModel extends adminModel {
 	private $dataMag;
 
 	protected function initPageModel() {
+		
 		// init data manager
 		$this->dataMag = new MysqlManager( array(
 			'host' => DB_HOST,

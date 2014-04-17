@@ -128,7 +128,7 @@ class MysqlManager extends DataManager {
 		}
 		//echo $sql;
 
-		// PDO: PHP Data Object
+		// PDO
 		try {
 			$pdo = new PDO( 'mysql:host='.$this->dbhost.';dbname='.$this->dbname.';charset=utf8', $this->dbuser, $this->dbpass );
 		} catch (PDOException $e) {
@@ -283,7 +283,6 @@ class MysqlManager extends DataManager {
 		}  
 		
 	}
-
 	public function addMultiData( array $attrs, array $datas ) {
 
 		// Check attr (to)
@@ -378,7 +377,7 @@ class MysqlManager extends DataManager {
 			$vtemp = explode( '=', $attrs['target']);
 			$column = $vtemp[0];
 			$values = $vtemp[1];
-			// 讀取target, 存到where
+			
 			$where.= " ".$column." IN (".$values.")";
 		}
 		if( isset( $attrs['where'] ) ) {
@@ -435,7 +434,6 @@ class MysqlManager extends DataManager {
 		if( isset( $attrs['target'] ) ) {
 			$where = str_replace( "&", " AND ", $attrs['target'] );
 			$sql = 'SELECT count(*) FROM `'.$this->dbtable.'` WHERE '.$where;
-			echo $sql;
 		} else {
 			$sql = 'SELECT count(*) FROM '.$this->dbtable;
 		}

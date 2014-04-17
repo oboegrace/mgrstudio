@@ -6,7 +6,16 @@ include_once( 'system/DataManagers/MysqlManager.php' );
 class workEditModel extends adminModel {
 
 	private $errorMsg = null;
+	private $dataMag;
 
+	protected function initPageModel() {
+		// init data manager
+		$this->dataMag = new MysqlManager( array(
+			'host' => DB_HOST,
+			'user' => DB_USER,
+			'pass' => DB_PASS,
+			'name' => DB_NAME));
+	}
 	public function getWorkData() {
 
 		// get id from url
@@ -17,14 +26,8 @@ class workEditModel extends adminModel {
 			return null;
 		}
 		// init data manager
-		$dataMag = new MysqlManager( array(
-			'host' => DB_HOST,
-			'user' => DB_USER,
-			'pass' => DB_PASS,
-			'name' => DB_NAME));//already defined in config.php
-
 		// get data
-		$data = $dataMag->getDataList( array(
+		$data = $this->dataMag->getDataList( array(
 			'from' => 'work',
 			'target' => 'id='.$id));	//只取要的欄位
 		// var_dump($data[0]);
@@ -46,7 +49,7 @@ class workEditModel extends adminModel {
 		// 
 		// 再塞進去data內回傳
 		// ======== get tag data ========== //
-		$tags = $this->getWorkTagArray( $dataMag, $id );
+		$tags = $this->getWorkTagArray( $this->dataMag, $id );
 		// implode --- 將陣列的元素用','串起來，輸出成一個字串
 		$data[0]['tags'] = implode(',', $tags);
 
@@ -54,13 +57,8 @@ class workEditModel extends adminModel {
 
 	}
 	public function getTagList(){
-		$dataMag = new MysqlManager( array(
-			'host' => DB_HOST,
-			'user' => DB_USER,
-			'pass' => DB_PASS,
-			'name' => DB_NAME));
 
-		$temp = $dataMag->getDataList( array(
+		$temp = $this->dataMag->getDataList( array(
 			'from' => 'work_tag',
 			'query' => 'SELECT DISTINCT tag FROM work_tag',
 			));
@@ -72,10 +70,18 @@ class workEditModel extends adminModel {
 				array_push( $result, $tag );
 			}
 		}
+		return $result;
+	}
+
+	public function getImgList(){
+
+		$result = $this->dataMag->getDataList( array(
+			'from' => 'work_img',
+			'target' => 'work_id='.$_GET['id'] ));
 
 		return $result;
-
 	}
+
 	private function getWorkTagArray( $dataMag, $id ){
 		// get tag
 		$tags_tmp = $dataMag->getDataList( array(
@@ -95,14 +101,7 @@ class workEditModel extends adminModel {
 	}
 	public function saveData(){
 
-		//== init data manager
-		$dataMag = new MysqlManager( array(
-			'host' => DB_HOST,
-			'user' => DB_USER,
-			'pass' => DB_PASS,
-			'name' => DB_NAME));//already defined in config.php
-
-		//== get data from front-end form
+		// get data from front-end form
 		$id 	 	 = $_POST['id'];
 		$title 	 	 = $_POST['title'];
 		$title_cn 	 = $_POST['title_cn'];
@@ -111,16 +110,66 @@ class workEditModel extends adminModel {
 		$youtube_id	 = $_POST['youtube_id'];
 		$tags 		 = $_POST['tags'];
 		$seq		 = $_POST['seq'];
-		$img         = null;
+		$imgs        = array();
 
 		// ======== upload IMAGE ========== //
-		// upload image file
-		if(isset($_FILES['img'])){
+		// upload image file 
+
+		if(isset($_FILES['preview_img'])){
+			
+			// $_FILES['preview_img']['name'][0] = 第一個檔案檔名
+			// $_FILES['preview_img']['name'][1] = 第二個檔案檔名
+			// $_FILES['preview_img']['name'][2] = 第三個檔案檔名
+
+			$file_count = count($_FILES['preview_img']['name']);
+			for ( $i=0; $i < $file_count ; $i++ ) { 
+
+				// info vars
+				$img_name 		 = $_FILES['preview_img']['name'][$i];
+				$img_tempPath    = $_FILES['preview_img']['tmp_name'][$i];
+				$target_rand 	 = time().'_'.rand(1000,9999);
+				$target_fileEx   = strtolower(end(explode('.', $img_name)));	//附檔名
+				$target_fileName = $target_rand.'.'.$target_fileEx;
+
+				// folders
+				$folder_origin   = 'main/workImg/';
+				$folder_medium   = 'main/workImg/medium/';
+				$folder_thumb    = 'main/workImg/thumb/';
+				$folder_temp 	 = 'temp/';
+
+				// full paths
+				$img_path_origin = $folder_origin.$target_fileName;
+				$img_path_medium = $folder_medium.$target_fileName;
+				$img_path_thumb  = $folder_thumb.$target_fileName;
+
+				// check file type ( if != jpg, skip this file )
+				if ( $target_fileEx != 'jpg')
+					continue;
+
+				// upload! (success)
+				if ( move_uploaded_file( $img_tempPath, $img_path_origin ) ) {
+
+					// save uploaded file name to array
+					array_push( $imgs, $target_fileName );
+
+					// resize
+					$this->ImageResize( $img_path_origin, $img_path_medium, 360, 200, 100 );
+					$this->ImageResize( $img_path_origin, $img_path_thumb,  72, 40, 100 );
+
+					// remove origin from tmp !!!!!
+					if ( is_file($folder_temp.$img_name) ) {	//incase it's a folder not a file
+						unlink( $folder_temp.$img_name );	//use 'unlink' to remove the file
+					}
+				}
+			}
+
+			/*
 			$img_name	    = $_FILES['img']['name'];		// get original file name
 			$img_tempPath   = $_FILES['img']['tmp_name'];	// get tmp folder which oploaded file exists
 
 			$target_rand 	 = time();						//generate random number for file name
 			$target_fileEx   = strtolower(end(explode('.', $img_name)));	//附檔名
+
 			//取得的檔名可能會是image/jpg或IMAGE/JPG str_to_lower轉換成小寫＆end只取最後一的part, 用.來分開
 			$target_fileName = $target_rand.'.'.$target_fileEx;	//設定存檔檔名rand.jpg
 			
@@ -148,7 +197,7 @@ class workEditModel extends adminModel {
 
 					// === remove original file if there is one ===//
 					// get origin file name from db
-					$dbTemp = $dataMag->getDataList( array(
+					$dbTemp = $this->dataMag->getDataList( array(
 						'from' => 'work',
 						'target' => 'id='.$id,
 						'column' => 'img' ));
@@ -173,7 +222,26 @@ class workEditModel extends adminModel {
 			} else {
 				$this->errorMsg = 'File Type Error. or No file uploaded.';
 			}
+			*/
 		}
+		// Save Images to DB (work_img) 
+		$coverImgName = $imgs[0];
+		if ( count($imgs) ) {
+
+			// make data array
+			$workImgDatas = array();
+			foreach ( $imgs as $imgFileName ) {
+				$wi = array(
+					'work_id' => $id,
+					'img' 	  => $imgFileName );
+				array_push( $workImgDatas, $wi );
+			}
+			// save to DB
+			$this->dataMag->addMultiData( 
+				array( 'to' => 'work_img' ),
+				$workImgDatas );
+		}
+
 		// Setup Data Values
 		$dataArray = array(
 				'title' 	=> $title,
@@ -181,14 +249,11 @@ class workEditModel extends adminModel {
 				'description' => $description,
 				'vimeo_id'	=> $vimeo_id,
 				'youtube_id'=> $youtube_id,
-				'seq' 		=> $seq );
-
-		if ( $img ) {
-			$dataArray['img'] = $img;
-		}
+				'seq' 		=> $seq,
+				'img' 		=> $coverImgName);
 		
 		// DB manager call updateData function
-		$dataMag->updateData(
+		$this->dataMag->updateData(
 			array(
 				'from' => 'work',
 				'target' => 'id='.$id
@@ -197,77 +262,35 @@ class workEditModel extends adminModel {
 		);
 
 		// ======== TAG ======= //
-		
-		// remove & untag
-		// 需要tag欄位的id
-		/*
-		$dataMag->deleteData( array(
-			'from' => 'product_coffee',
-			'target' => 'id=33'));
-		*/
-		// DELETE FROM `work_tag` WHERE work_id = aa AND tag = XXXX
-		// remove 所有原來的
-		
-		$dataMag->deleteData(array(
+		// delete all origin tag
+		$this->dataMag->deleteData( array(
 			"from" 	=> "work_tag",
-			"target" => "work_id=".$id
-			) 
-		);
-		// 一樣的，不動
-		// 少的，remove
-		// $tags_remove = array();
-		// 多的 addData
-		// $tags_add = array();
+			"target" => "work_id=".$id ));
 
-		// 取得原本的 tag array
-		// $exist_Tags = $this->getWorkTagArray( $dataMag, $id );
-		// 做出欲save的 tag array
-
-
-		// for ($i = 0 ; $i < count($tagArray); $i++){
-		// 	if (!in_array($tagArray[$i], $exist_Tags)){
-		// 		// 多的 addData
-		// 		array_push($tags_add,$tagArray[$i]);
-		// 	}
-		// }
-		// for ($i = 0 ; $i < count($exist_Tags); $i++){
-		// 	if (!in_array($exist_Tags[$i], $tagArray)){
-		// 		// 多的 addData
-		// 		array_push($tags_remove,$exist_Tags[$i]);
-		// 	}
-		// }
-		/*
-		要把 tag_Add 做成下面這樣
-		array(
-			array(
-				'work_id' => $id,
-				'tag' => $tag),
-			),
-			array(
-				'work_id' => $id, 
-				'tag' => $tag),
-			)
-		)*/
+		// create new tag
 		$tagArray = explode(',', $tags);
 		$addArray = array();
 		for ($i = 0 ; $i < count($tagArray); $i++){
 			array_push($addArray, array('work_id'=>$id, 'tag'=> trim($tagArray[$i])));
 		}
 
+		// Save tags to DB
 		if (count($addArray)){
-			$dataMag->addMultiData(
+			$this->dataMag->addMultiData(
 				array('to' => 'work_tag'), 
-				$addArray
-			);
+				$addArray );
 		}
-		
 
-		if ( $this->errorMsg == null ){
-			header("Location: ../works");
-		}else{
-			echo $this->errorMsg;
-		}
-	}//end saveData
+		
+		
+		// go to other pages
+		// if ( $this->errorMsg == null ){
+		// 	header("Location: ../works");
+		// }else{
+		// 	echo $this->errorMsg;
+		// }
+	}
+	//end saveData
 	public function getErrorMsg() {
 		return $this->errorMsg;
 	}
@@ -353,14 +376,7 @@ class workEditModel extends adminModel {
 			$dataArray['img'] = $img;
 		}
 
-		// init data manager
-		$dataMag = new MysqlManager( array(
-			'host' => DB_HOST,
-			'user' => DB_USER,
-			'pass' => DB_PASS,
-			'name' => DB_NAME));
-
-		$dataMag->addData(
+		$this->dataMag->addData(
 			array(
 				'to' => 'work'), 
 			$dataArray
@@ -420,18 +436,19 @@ class workEditModel extends adminModel {
 		return $percent;
 	}
 
+	// ======== upload IMAGE for PREVIEW========== //
 	public function uploadTempImage( $FILE ){
-		// ======== upload IMAGE for PREVIEW========== //
+
 		$img_name	    = $FILE['name'];		// get original file name
 		$img_tempPath   = $FILE['tmp_name'];	// get tmp folder which oploaded file exists
-		$target_fileEx   = strtolower(end(explode('.', $img_name)));	//附檔名
+		$target_fileEx  = strtolower(end(explode('.', $img_name)));	//附檔名
 		$folder_temp   = 'temp/';
 		// set file path & name
 		$img_targetPath  = $folder_temp.$img_name;
-		
+		//echo "uploadTempImage: ".$img_targetPath;
 
 		// Check file type
-		if ( $target_fileEx == 'jpg') {
+		if ( $target_fileEx == 'jpg' || $target_fileEX == 'jpeg') {
 			// copy temp file to target folder
 			if ( move_uploaded_file( $img_tempPath, $img_targetPath ) ) {
 				return $img_targetPath;

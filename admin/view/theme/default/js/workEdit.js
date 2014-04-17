@@ -37,26 +37,39 @@ function validateForm(){
 }
 
 // ======= AJAX UPLOAD IMAGE PREVIEW ======= //
-document.getElementById('imageFile').onchange = function(){
-	// 換圖的時候&按下確定後， do ajax post
-	startAjaxUpload( this.files[0] ); 
-	// this 是function 的主人: document.getElementById('imageFile')
+document.getElementById('previewInput').onchange = function(){
+
+	// 換圖的時候&按下確定後(onchange)， do ajax post
+	// 先確定有幾張
+	var fileCount = this.files.length;
+	console.log("file count: "+fileCount);
+
+	for ( var i = 0 ; i < fileCount; i++ ) {
+
+		// 產生 loading 圖片框 <div class="loadingImg"/>
+		var loadingImg = document.createElement( 'div' );
+		loadingImg.className = 'loadingImg';
+		loadingImg.innerHTML = 'uploading...';
+		document.getElementById( 'imagesContainer' ).appendChild( loadingImg );
+
+		// 開始上傳圖片 ( 把路徑 & loading 圖片框 傳過去 )
+		var file_dir = this.files[i];
+		startAjaxUpload( file_dir, loadingImg );
+	}
 
 }
 // Preview area onclick 呼叫 to open file dialog 
-function changeImage(){
-	document.getElementById('imageFile').click();
-	// as if file input area is clicked
+function uploadImage(){
+	document.getElementById('previewInput').click();
 }
 
-
-function startAjaxUpload(file){
+function startAjaxUpload( file, loadingImg ){//loadingImg是個用來preview img 的div
 
 	// show loading
+	console.log('startAjaxUpload check file:'+file);
 
 	// prepare datas
 	var formData = new FormData();
-
 	formData.append('ajax', 'uploadImage');// variable name & variable value
 	formData.append('file', file);
 
@@ -68,16 +81,18 @@ function startAjaxUpload(file){
 			// 上傳成功的話，在網頁上顯示圖片
 			if( backValue == 'error_upload' ){
 				//error message todo
-			}else if ( backValue == 'error_filetype' ){
+			} else if ( backValue == 'error_filetype' ){
 				//error message todo
-			}else{
-				document.getElementById('imageUploadPreview').src=backValue;
-				console.log('success:'+backValue);
+			} else {
+				// success
+				// 顯示上傳的預覽圖
+				loadingImg.innerHTML = '';
+				loadingImg.style.backgroundImage = 'url('+backValue+')';
 			}
 			
 		}, 
 		function(backValue){
 			// failed
-			console.log('failed:'+backValue);
+			loadingImg.innerHTML = 'failed';
 		} ) ;
 }

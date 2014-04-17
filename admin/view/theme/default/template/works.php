@@ -10,26 +10,40 @@
 </div>
 <div id="content">
 	<div class="contentArea">
-		<form>
+		<form name="workListForm">
 			<table class="table table-hover" cellspacing="0" cellpadding="0">	
 				<tr>
+					<!-- checkbox 這個打勾應該要全選 -->
+					<th><input type="checkbox" id="CheckAll" onClick="checkAll(document.workListForm.list);" class="btn btn-link" value="全選"><!-- <input type="checkbox" class="works_checkbox"> -->
+						<input type="hidden" id="UnCheckAll" onClick="uncheckAll(document.workListForm.list);" class="btn btn-link" value="取消全選"></th>
+					<!-- 優先次序 seq -->
+					<th><i class="fa fa-star"></i> 優先程度</th>
+					<!-- image -->
 					<th></th>
+					<!-- title -->
+					<th>作品名稱</th>
+					<!-- edit -->
 					<th></th>
-					<th>標題</th>
-					<th></th>
+					<!-- delete -->
 					<th></th>
 				</tr>
 				<!-- php for-loop $worksList was included from worksView.php-->
 				<?php for ($i = 0 ; $i < count($worksList) ; $i++): ?>
 				<tr>
-					<td><input type="checkbox" class="works_checkbox"></td>
+					<!-- checkbox -->
+					<td><input type="checkbox" name="list" class="works_checkbox"></td>
 					<input type="hidden" class="works_id" value="<?=$worksList[$i]['id']?>">
-					
+					<!-- 優先次序 seq -->
+					<td><?php if($worksList[$i]['top3']) echo "<i class='fa fa-star'></i>"; ?>
+						<?=$worksList[$i]['seq']?></td>
+					<!-- image -->
 					<td><img src="main/workImg/thumb/<?php if($worksList) if($worksList[$i]['img']) echo $worksList[$i]['img']; else echo "empty.jpg";?>" class="previewImg" /></td>
+					<!-- title -->
 					<td><?=$worksList[$i]['title']?><br><small><?=$worksList[$i]['title_cn']?></small></td>
-
+					<!-- edit -->
 					<td><a href="admin/workEdit/?id=<?=$worksList[$i]['id']?>"><i class="fa fa-pencil"/></a></td>
-					<td><a onclick="deleteWork(<?=$worksList[$i]['id']?>);" ><i class="fa fa-trash-o"></a></td>
+					<!-- delete -->
+					<td><a onclick="deleteWork(<?=$worksList[$i]['id']?>);" style="cursor: pointer;"><i class="fa fa-trash-o"></a></td>
 				</tr>
 				<!-- 呼叫works.js 的deleteWorks() 產生表單＆送出 -->
 				<?php endfor;?>

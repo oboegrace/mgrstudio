@@ -7,11 +7,8 @@ class websiteView extends adminView {
 
 	protected $subPageName = 'index';
 
-	public function iniPage( &$wrapper ) {
-
-		$styleFolder = $this->getStyleFolder();
-
-		$wrapper->addCss( $styleFolder.'website.css' );
+	public function initPage( &$wrapper ) {
+		$wrapper->addCss( $this->cssFolder.'website.css' );
 		$wrapper->addCss( 'system/XmlEditor/XmlEditor.css' );
 		$wrapper->addJs( 'system/XmlEditor/XmlEditor.js' );
 	}

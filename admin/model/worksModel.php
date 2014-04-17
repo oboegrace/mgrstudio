@@ -23,9 +23,29 @@ class worksModel extends adminModel {
 		// get data
 		$dataList = $this->dataMag->getDataList( array(
 			'from' => 'work',
-			'column' => 'id, title, title_cn, img',
+			'column' => 'id, title, title_cn, img, seq',
 			'limit' => $startIndex.','.$this->worksPerPageCount));	//只取要的欄位
 		// var_dump($dataList);
+		// get top 3's id
+		$top = $this->dataMag->getDataList( array(
+			'from' => 'work',
+			'column' => 'id',
+			'sortBy' => 'seq:LARGE',
+			'limit' => '3'
+			));
+
+		$top3 = array();
+		// $top3[0]~$top3[2]
+		for ($i = 0 ; $i < 3 ; $i++){
+			array_push($top3, $top[$i]['id']);
+		}
+	
+		for($i = 0 ; $i < count($dataList) ; $i++){
+			if(in_array($dataList[$i]['id'],$top3)){
+				$dataList[$i]['top3'] = true;
+			}else
+				$dataList[$i]['top3'] = false;
+		}
 		return $dataList;
 	}
 	public function deleteWorks(){
@@ -37,6 +57,7 @@ class worksModel extends adminModel {
 				'from' => 'work',
 				'target' => 'id='.$id)
 		);
+		// todo: 刪掉work_tag & work_img內相關欄位
 
 	}
 	// =========== pagination ========= //

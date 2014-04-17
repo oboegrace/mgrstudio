@@ -65,14 +65,34 @@
 			</div>
 			<!-- IMAGE -->
 			<div class="form-group">
-				<label for="imageFile" class="col-sm-2 control-label">File input</label>
+				<!-- left -->
+				<label for="imageFile" class="col-sm-2 control-label">圖片</label>
+				<!-- right -->
 				<div class="col-sm-10">
-					<input type="file" id="imageFile" name="img" style="display:none"/>
+					<!-- The fileinput-button span is used to style the file input field as button -->
+		   			<span onclick="uploadImage();" class="btn btn-success fileinput-button" >
+		        		<i class="fa fa-plus"></i><span> 新增圖檔</span>
+		        		<!-- The file input field used as target for the file upload widget -->
+						<input type="file" id="previewInput" name="preview_img[]" style="display:none" multiple/>
+					</span>
+					<!-- The container for the (preview) uploaded files -->
+					<div id="imagesContainer">
+						<?php foreach ( $imgList as $img ): ?>
+						<!-- preview image -->
+						<img src="main/workImg/<?=$img['img']?>" class="previewImg"/>
+						<?php endforeach; ?>
+					</div>
+
 					<!-- preview image -->
-					<img onclick="changeImage();" id="imageUploadPreview" src="main/workImg/<?php if($workData) echo $workData['img'];?>" class="previewImg img-thumbnail" />
+		    		<div id="files" class="files"></div>
+					<!-- The global progress bar -->
+					<!-- <br>
+					<div id="progress" class="progress">
+						<div class="progress-bar progress-bar-success"></div>
+		    		</div> -->
+					<!-- <img onclick="changeImage();" id="imageUploadPreview" src="main/workImg/<?php if($workData) echo $workData['img'];?>" class="previewImg img-thumbnail" /> -->
 				</div>
 			</div>
-
 			<!-- <div class="form-group">
 				<label for="date">Date</label>
 				<p class="help-block"><?php if($workData) echo $workData['date'];?></p>
@@ -86,7 +106,7 @@
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
 					<p>
-						<button type="submit" value="SAVE" class="btn btn-primary">Save</button>
+						<button type="submit" value="SAVE" class="btn btn-success">Save</button>
 						<button type="button" value="Cancel" class="btn btn-default" onclick="cancel()">Cancel</button>
 					</p>
 				</div>

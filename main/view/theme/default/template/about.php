@@ -7,9 +7,6 @@
 			<div class="title-hr"><h5>Story</h5></div>
 			<p><?=$content1;?></p>
 		</div>
-		<div class="eight columns">
-			<img src="<?=$this->imgFolder?>about_logo.gif" id="about_img"/>
-		</div>
 	</div>
 </div>
 <div class="row dark" id="row_achievement">
